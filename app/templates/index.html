@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html ng-app="remember">
+    <head>
+        <title>Remember</title>
+        <link rel="stylesheet" href="app/css/bootstrap.min.css">
+        <link rel="stylesheet" href="app/css/main.css">
+        <link rel="stylesheet" href="app/css/xeditable.css">
+        <link rel="icon" href="app/images/favicon.ico">
+        
+    </head>
+    <body>
+    	<div id="wrapper">
+	        <!-- Sidebar -->
+	        <div id="sidebar-wrapper">
+	            <ul class="sidebar-nav">
+	                <li>
+	                    <a href="#/"><img src="app/images/remember.png" height="50" width="50"></a>
+	                </li>
+	                <li>
+	                    <a href="#/create"><img src="app/images/create.png" height="50" width="50"></span></a>
+	                </li>
+	                <li>
+	                    <a href="#/category-info"><img src="app/images/tags.png" height="50" width="50"></a>
+	                </li>
+                    <li>
+	                    <a href="#/tag-info"><img src="app/images/tags.png" height="50" width="50"></a>
+	                </li>
+	            </ul>
+	        </div>
+	
+	        <!-- Page Content -->
+	        <div id="page-content-wrapper">
+	            <div class="container-fluid">
+			        <div ng-view/>
+	            </div>
+	        </div>
+    	</div>
+    	
+    	<script src="app/lib/angular.min.js"></script>
+        <script src="app/lib/angular-resource.min.js"></script>
+        <script src="app/lib/angular-route.min.js"></script>
+        <script src="app/lib/jquery.min.js"></script>
+        <script src="app/lib/bootstrap.min.js"></script>
+        <script src="app/lib/showdown.min.js"></script>
+        <script src="app/lib/xeditable.js"></script>
+       
+       
+        <script src="app/scripts/app.js"></script>
+        <script src="app/scripts/controllers/taskControllers.js"></script>
+        <script src="app/scripts/services/taskServices.js"></script>
+        <script src="app/scripts/controllers/categoryControllers.js"></script>
+        <script src="app/scripts/controllers/tagControllers.js"></script>
+        <script src="app/scripts/services/categoryServices.js"></script>
+        <script src="app/scripts/services/tagServices.js"></script>
+        <script src="app/scripts/directives/directives.js"></script>
+    </body>
+</html>
+

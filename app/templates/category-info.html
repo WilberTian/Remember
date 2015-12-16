@@ -1,0 +1,50 @@
+<div class="col-xs-6 category-info" >
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+                Category Info
+        </div>
+        <!-- Table -->
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody ng-repeat="category in categories">
+                <tr>
+                    <td>
+                        <span editable-text="category.name" e-name="name" e-form="rowform" onbeforesave="checkName($data, category.id)" e-required>
+                            {{ category.name || 'empty' }}
+                        </span>
+                    </td>
+                    <td>
+                        <span editable-text="category.description" e-name="description" e-form="rowform" onbeforesave="checkName($data, category.id)" e-required>
+                            {{ category.description || 'empty' }}
+                        </span>
+                    </td>
+                    <td>
+                        <form editable-form name="rowform" onbeforesave="categoryOperations.updateCategory(category.id, $data)" oncancel="categoryOperations.removeUnusedRow($index, category)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == category">
+                          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                            Update
+                          </button>
+                          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                            Cancel
+                          </button>
+                        </form>
+                        <div class="buttons" ng-show="!rowform.$visible">
+                          <button class="btn btn-default" ng-click="rowform.$show()"><span class="glyphicon glyphicon-pencil"></span></button>
+                          <button class="btn btn-default" ng-click="categoryOperations.deleteCategory(category.id, $index)"><span class="glyphicon glyphicon-remove"></span></button>
+                        </div>  
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="panel-footer">
+            <button class="btn btn-default" ng-click="categoryOperations.createCategory()">Create</button>
+        </div>
+    </div>
+</div>    
+   

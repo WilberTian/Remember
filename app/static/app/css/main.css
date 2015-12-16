@@ -1,0 +1,142 @@
+
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 70px;
+    width: 0;
+    height: 100%;
+    margin-left: -70px;
+    overflow-y: auto;
+    background: #6C6D6E;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+}
+
+#page-content-wrapper {
+    position: absolute;
+    margin-right: -70px;
+}
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 70px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li a {
+    display: block;
+    padding: 10px;
+}
+
+.sidebar-nav li a:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 70px;
+    }
+
+    #sidebar-wrapper {
+        width: 70px;
+    }
+
+    #page-content-wrapper {
+        position: relative;
+    }
+
+}
+
+
+/*
+task list page
+*/
+#toolbar{
+	padding:5px;
+	background-color:#eee;
+}
+
+textarea {
+    resize: vertical;
+    margin-top: 2px;
+}
+
+#task-container{
+    padding:10px;
+}
+
+.task-list-item{
+    border: 1px solid #D0CCCC;
+    padding: 10px;
+    margin:2px;
+}
+
+.task-complete{
+    border-left: 5px solid #5cb85c;
+}
+
+.task-incomplete{
+    border-left: 5px solid red;
+}
+
+.label-info{
+    margin-right:2px;
+}
+
+.dimension-header{
+    border-bottom: 6px solid #eee;
+    margin-bottom: 15px;
+    padding:5px;
+    font-weight: bold;
+    font-size: large;
+}
+
+.page-header{
+    padding:10px;
+}
+
+.label{
+    display: inline-block;
+}
+
+.dimension-mark{
+    display: inline-block;
+    font-weight: bold;
+    width:20px;
+    height: 20px;
+    color: #fff;
+    background-color: #F1A257;
+    text-align: center;
+    border-radius: .25em;
+    white-space: nowrap;
+}
+
+.strike {
+    position: relative;
+    display: inline-block;
+}
+
+.strike::before {
+    content: '';
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 40%;
+}
+
+.strike::before {
+    border: 2px solid #A94442;
+    -webkit-transform: skewY(30deg);
+    transform: skewY(30deg);
+}
+
+.category-info, .tag-info{
+    margin: 50px;
+}

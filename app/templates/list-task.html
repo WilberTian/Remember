@@ -1,0 +1,56 @@
+<div id="toolbar" class="row">
+    <div class="col-xs-2">
+        <select class="form-control"  ng-options="category.name for category in categories track by category.id" ng-model="selectedCategory"></select>
+    </div>
+    <div class="col-xs-2">
+        <select class="form-control"  ng-options="tag.name for tag in tags track by tag.id" ng-model="selectedTag"></select>
+    </div>
+    <div class="col-xs-2">
+        <select class="form-control"  ng-options="tag.name for tag in tags track by tag.id" ng-model="selectedTag"></select>
+    </div>
+    <div class="btn-group col-xs-2" role="group" >
+        <button type="button" class="btn btn-info" ng-click="taskView = 'list'" ng-disabled="taskView == 'list'"><span class="glyphicon glyphicon-th-list"></span></button>
+        <button type="button" class="btn btn-info" ng-click="taskView = 'group'" ng-disabled="taskView == 'group'"><span class="glyphicon glyphicon-th-large"></span></button>
+    </div>
+</div>
+
+<div id="task-container" ng-init="taskView = 'list'">
+
+    <div id="task-list-view" ng-show="taskView == 'list'" class="col-xs-6">
+        <table class="table table-bordered table-condensed table-striped">
+            <tr>
+                <th>Dimension</th>
+                <th>Name</th>
+                <th>Catetory</th>
+                <th>Tags</th>
+            </tr>
+            <tr ng-repeat="task in tasks">
+                <td>
+                    <span class="dimension-mark" ng-class="{strike: task.dimension ==1 || task.dimension == 2 }">I</span>
+                    <span class="dimension-mark" ng-class="{strike: task.dimension ==1 || task.dimension == 3 }">U</span>
+                </td>
+                <td ng-class="task.done?'success':'danger'"><a href="/#/view/{{task.id}}">{{task.name}}</a></td>
+                <td><span class="label label-primary">{{task.category.name}}</span></td>
+                <td><span class="label label-info" ng-repeat="tag in task.tags">{{tag.name}}</span></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="task-group-view" ng-show="taskView == 'group'">
+        <div ng-repeat="dimension in dimensions" class=" col-xs-3">
+            <div class="dimension-header">{{dimension.name}}</div>
+            <div ng-repeat="task in tasks" ng-if="task.dimension == dimension.id" class="col-xs-12 task-list-item" ng-class="task.done?'task-complete':'task-incomplete'">
+                <div class="pull-right">
+                    <span class="dimension-mark" ng-class="{strike: dimension.id ==1 || dimension.id == 2 }">I</span>
+                    <span class="dimension-mark" ng-class="{strike: dimension.id ==1 || dimension.id == 3 }">U</span>
+                </div>
+                <h4><a href="/#/view/{{task.id}}">{{task.name}}</a></h4>
+                <span class="label label-primary">{{task.category.name}}</span><br/>
+                <span class="label label-info" ng-repeat="tag in task.tags">{{tag.name}}</span>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+

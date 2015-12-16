@@ -1,0 +1,15 @@
+<div class="page-header" ng-class="task.done?'task-complete':'task-incomplete'">
+    <h4>{{task.name}}</h4>
+    <div class="btn-group pull-right">
+        <button type="button" class="btn btn-default" ng-click="editTask()"><span class="glyphicon glyphicon-pencil"></span></button>
+        <button type="button" class="btn btn-default" ng-click="deleteTask()"><span class="glyphicon glyphicon-remove"></span></button>
+    </div>
+    <div >
+        <span class="dimension-mark" ng-class="{strike: dimension.id ==1 || dimension.id == 2 }">I</span>
+        <span class="dimension-mark" ng-class="{strike: dimension.id ==1 || dimension.id == 3 }">U</span>
+    </div>
+    <span class="label label-primary">{{task.category.name}}</span>
+    <span class="label label-info" ng-repeat="tag in task.tags">{{tag.name}}</span>
+</div>
+
+<div markdown="task.description"></div>
