@@ -64,4 +64,7 @@ def swagger_json():
 @app.route("/swagger")
 def swagger():
     return render_template('swagger.html')    
-        
+    
+@app.route('/upload')
+def upload():
+    return render_template('upload.html')

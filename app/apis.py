@@ -1,9 +1,11 @@
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask import Flask, jsonify, abort, make_response, render_template
+from flask import Flask, jsonify, abort, make_response, render_template, request, redirect, url_for
 from flask.ext.restful import Api, Resource, reqparse, fields, marshal
 from flask.ext.httpauth import HTTPBasicAuth
 from app import app, api, auth, db, models
 import json
+import uuid
+import os
 
 @api.representation('application/json')
 def output_json(data, code, headers=None):
@@ -265,8 +267,29 @@ class TagAPI(Resource):
         db.session.delete(tag)
         db.session.commit()
         return {'tag': marshal(tag, tag_fields)}
-        
+    
 
+# This is the path to the upload directory
+app.config['UPLOAD_FOLDER'] = 'uploads/'
+# These are the extension that we are accepting to be uploaded
+app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'py'])
+    
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
+    
+    
+class UploadAttachment(Resource):
+    def __init__(self):
+        super(UploadAttachment, self).__init__
+        
+    def post(self):
+        file = request.files['file']
+        if file and allowed_file(file.filename.lower()):
+            extension = os.path.splitext(file.filename)[1]
+            f_name = str(uuid.uuid4()) + extension          
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], f_name))
+            return {'filename':f_name}
+     
 api.add_resource(TaskList, '/remember/api/v1.0/tasks', endpoint='tasks')
 api.add_resource(TaskListByStatus, '/remember/api/v1.0/tasks/find-by-status', endpoint='taskByStatus')
 api.add_resource(TaskListByCategory, '/remember/api/v1.0/tasks/find-by-category', endpoint='taskByCategory')
@@ -278,7 +301,7 @@ api.add_resource(CategoryAPI, '/remember/api/v1.0/categories/<int:id>', endpoint
 api.add_resource(TagListAPI, '/remember/api/v1.0/tags', endpoint='tags')
 api.add_resource(TagAPI, '/remember/api/v1.0/tags/<int:id>', endpoint='tag')
 
-
+api.add_resource(UploadAttachment, '/task/uploadAttachment', endpoint='uploadAttachment')
 
 
 
