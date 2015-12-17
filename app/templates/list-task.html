@@ -26,8 +26,8 @@
             </tr>
             <tr ng-repeat="task in tasks">
                 <td>
-                    <span class="dimension-mark" ng-class="{strike: task.dimension ==1 || task.dimension == 2 }">I</span>
-                    <span class="dimension-mark" ng-class="{strike: task.dimension ==1 || task.dimension == 3 }">U</span>
+                    <span class="dimension-mark" ng-class="{strike: task.dimension ==3 || task.dimension == 4 }">I</span>
+                    <span class="dimension-mark" ng-class="{strike: task.dimension ==2 || task.dimension == 4 }">U</span>
                 </td>
                 <td ng-class="task.done?'success':'danger'"><a href="/#/view/{{task.id}}">{{task.name}}</a></td>
                 <td><span class="label label-primary">{{task.category.name}}</span></td>
@@ -41,8 +41,8 @@
             <div class="dimension-header">{{dimension.name}}</div>
             <div ng-repeat="task in tasks" ng-if="task.dimension == dimension.id" class="col-xs-12 task-list-item" ng-class="task.done?'task-complete':'task-incomplete'">
                 <div class="pull-right">
-                    <span class="dimension-mark" ng-class="{strike: dimension.id ==1 || dimension.id == 2 }">I</span>
-                    <span class="dimension-mark" ng-class="{strike: dimension.id ==1 || dimension.id == 3 }">U</span>
+                    <span class="dimension-mark" ng-class="{strike: dimension.id ==3 || dimension.id == 4 }">I</span>
+                    <span class="dimension-mark" ng-class="{strike: dimension.id ==2 || dimension.id == 4 }">U</span>
                 </div>
                 <h4><a href="/#/view/{{task.id}}">{{task.name}}</a></h4>
                 <span class="label label-primary">{{task.category.name}}</span><br/>

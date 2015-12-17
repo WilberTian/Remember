@@ -5,8 +5,8 @@
         <button type="button" class="btn btn-default" ng-click="deleteTask()"><span class="glyphicon glyphicon-remove"></span></button>
     </div>
     <div >
-        <span class="dimension-mark" ng-class="{strike: dimension.id ==1 || dimension.id == 2 }">I</span>
-        <span class="dimension-mark" ng-class="{strike: dimension.id ==1 || dimension.id == 3 }">U</span>
+        <span class="dimension-mark" ng-class="{strike: task.dimension ==3 || task.dimension == 4 }">I</span>
+        <span class="dimension-mark" ng-class="{strike: task.dimension ==2 || task.dimension == 4 }">U</span>
     </div>
     <span class="label label-primary">{{task.category.name}}</span>
     <span class="label label-info" ng-repeat="tag in task.tags">{{tag.name}}</span>
