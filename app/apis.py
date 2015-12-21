@@ -54,11 +54,11 @@ class TaskList(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
         self.reqparse.add_argument('name', type=unicode, required=True, help='No task name provided', location='json')
-        self.reqparse.add_argument('description', type=unicode, required=True, default="", location='json')
-        self.reqparse.add_argument('done', type=bool, required=True, default="", location='json')
-        self.reqparse.add_argument('category', type=dict, required=True, default="", location='json')
-        self.reqparse.add_argument('tags', type=list, required=True, default="", location='json')
-        self.reqparse.add_argument('dimension', type=int, default="", location='json')                           
+        self.reqparse.add_argument('description', type=unicode, default="", location='json')
+        self.reqparse.add_argument('done', type=bool, required=True, location='json')
+        self.reqparse.add_argument('category', type=dict, required=True, location='json')
+        self.reqparse.add_argument('tags', type=list, default=[], location='json')
+        self.reqparse.add_argument('dimension', type=int, required=True, location='json')                           
         super(TaskList, self).__init__()
         
         self.representations = {
@@ -72,7 +72,7 @@ class TaskList(Resource):
 
     def post(self):
         args = self.reqparse.parse_args()
-      
+        
         category = models.Category.query.filter_by(id = args['category']["id"]).first()
         
         tags = [models.Tag.query.filter_by(id = tag["id"]).first() for tag in args["tags"]]
