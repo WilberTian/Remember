@@ -3,10 +3,10 @@
 #sidebar-wrapper {
     z-index: 1000;
     position: fixed;
-    left: 70px;
+    left: 60px;
     width: 0;
     height: 100%;
-    margin-left: -70px;
+    margin-left: -60px;
     overflow-y: auto;
     background: #6C6D6E;
 }
@@ -18,13 +18,13 @@
 
 #page-content-wrapper {
     position: absolute;
-    margin-right: -70px;
+    margin-right: -60px;
 }
 
 .sidebar-nav {
     position: absolute;
     top: 0;
-    width: 70px;
+    width: 60px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -41,11 +41,11 @@
 
 @media(min-width:768px) {
     #wrapper {
-        padding-left: 70px;
+        padding-left: 60px;
     }
 
     #sidebar-wrapper {
-        width: 70px;
+        width: 60px;
     }
 
     #page-content-wrapper {
