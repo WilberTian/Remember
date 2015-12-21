@@ -21,13 +21,16 @@ app.controller("TagInfoController", function($scope, Tag, tags){
                 }
             );
         },
-        "updateTag": function(id, tag){
-            if(id == -1){
+        "updateTag": function(index){
+            var tag = $scope.tags[index];
+        
+            if(tag.id == -1){
                 // create a new tag
+                delete tag["id"];
                 Tag.save(tag).$promise.then(
                     function(response){
                         console.log(response);
-                        
+                        $scope.tags[index] = response["tag"];
                     },
                     function(){
                         alert("fail to create tag");
@@ -36,7 +39,7 @@ app.controller("TagInfoController", function($scope, Tag, tags){
             }
             else{
                 // update the tag
-                Tag.update({ id: id }, tag).$promise.then(
+                Tag.update({ id: tag.id }, tag).$promise.then(
                     function(response){
                         console.log(response);
 

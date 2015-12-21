@@ -21,14 +21,16 @@ app.controller("CategoryInfoController", function($scope, Category, categories){
                 }
             );
         },
-        "updateCategory": function(id, category){
-            console.log(id, category);
-            if(id == -1){
+        "updateCategory": function(index){
+            var category = $scope.categories[index];
+            
+            if(category.id == -1){
                 // create a new category
+                delete category["id"];
                 Category.save(category).$promise.then(
                     function(response){
                         console.log(response);
-                        
+                        $scope.categories[index] = response["category"]
                     },
                     function(){
                         alert("fail to create category");
@@ -37,7 +39,7 @@ app.controller("CategoryInfoController", function($scope, Category, categories){
             }
             else{
                 // update the category
-                Category.update({ id: id }, category).$promise.then(
+                Category.update({ id: category.id }, category).$promise.then(
                     function(response){
                         console.log(response);
 

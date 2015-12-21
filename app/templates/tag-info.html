@@ -20,7 +20,7 @@
                         </span>
                     </td>
                     <td>
-                        <form editable-form name="rowform" onbeforesave="tagOperations.updateTag(tag.id, $data)" oncancel="tagOperations.removeUnusedRow($index, tag)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == tag">
+                        <form editable-form name="rowform" onbeforesave="tagOperations.updateTag($index)" oncancel="tagOperations.removeUnusedRow($index, tag)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == tag">
                           <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                             Update
                           </button>
