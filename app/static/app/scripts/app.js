@@ -1,4 +1,4 @@
-var app = angular.module("remember", ["xeditable", "ngRoute", "remember.taskServices", "remember.categoryServices", "remember.tagServices", "remember.directives"]);
+var app = angular.module("remember", ["xeditable", "ngRoute", "remember.taskServices", "remember.categoryServices", "remember.tagServices", "remember.noteServices", "remember.directives"]);
 
 app.config(function($routeProvider){
     $routeProvider.
@@ -72,6 +72,14 @@ app.config(function($routeProvider){
                 }
             },
             templateUrl: "tag-info"
+        }).when("/notes", {
+            controller: "NoteInfoController", 
+            resolve: {
+                notes: function(NoteListLoader){
+                    return NoteListLoader();
+                }
+            },
+            templateUrl: "notes"
         }).otherwise({redirectTo:'/'});
 
 

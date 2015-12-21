@@ -54,7 +54,11 @@ def category_info():
     
 @app.route("/tag-info")
 def tag_info():
-    return render_template("tag-info.html")         
+    return render_template("tag-info.html")     
+
+@app.route("/notes")
+def notes():
+    return render_template("notes.html")        
     
 @app.route("/swagger/swagger_config")
 def swagger_json():

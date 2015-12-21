@@ -20,6 +20,12 @@ def output_xml(data, code, headers=None):
     resp.headers.extend(headers or {})
     return resp    
 
+note_fields = {
+    "id": fields.Integer,
+    "content": fields.String,
+    "width": fields.Integer
+}       
+    
 tag_fields = {
     "id": fields.Integer,
     "name": fields.String,
@@ -267,7 +273,66 @@ class TagAPI(Resource):
         db.session.delete(tag)
         db.session.commit()
         return {'tag': marshal(tag, tag_fields)}
+   
+class NoteListAPI(Resource):
+    #decorators = [auth.login_required]
+
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('content', type=unicode, required=True, help='No note content provided', location='json')
+        self.reqparse.add_argument('width', type=int, default=1, location='json')       
+        super(NoteListAPI, self).__init__()
+
+    def get(self):
+        notes = models.Note.query.all()
+        return {'notes': [marshal(note, note_fields) for note in notes]}
+
+    def post(self):
+        args = self.reqparse.parse_args()
+        print args
+        note = models.Note(args["content"], args["width"])
+        db.session.add(note)
+        db.session.commit();
+        return {'note': marshal(note, note_fields)}, 201
+
+class NoteAPI(Resource):
+    #decorators = [auth.login_required]
+
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('content', type=unicode, location='json')
+        self.reqparse.add_argument('width', type=int, default=1, location='json')     
+        super(NoteAPI, self).__init__()
+
+    def get(self, id):
+        note = models.Note.query.filter_by(id=id).first()
+        if not note:
+            abort(404)
+            
+        return {'note': marshal(note, note_fields)}
     
+
+    def put(self, id):
+        note = models.Note.query.filter_by(id=id).first()
+       
+        if not note:
+            abort(404)
+
+        args = self.reqparse.parse_args()
+        for k, v in args.items():
+            if v is not None:
+                setattr(note, k, v)
+        db.session.commit()
+        return {'note': marshal(note, note_fields)}
+
+    def delete(self, id):
+        note = models.Note.query.filter_by(id=id).first()
+        if not note:
+            abort(404)
+        db.session.delete(note)
+        db.session.commit()
+        return {'note': marshal(note, note_fields)}
+     
 
 # This is the path to the upload directory
 app.config['UPLOAD_FOLDER'] = 'uploads/'
@@ -290,16 +355,19 @@ class UploadAttachment(Resource):
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], f_name))
             return {'filename':f_name}
      
-api.add_resource(TaskList, '/remember/api/v1.0/tasks', endpoint='tasks')
-api.add_resource(TaskListByStatus, '/remember/api/v1.0/tasks/find-by-status', endpoint='taskByStatus')
-api.add_resource(TaskListByCategory, '/remember/api/v1.0/tasks/find-by-category', endpoint='taskByCategory')
-api.add_resource(Task, '/remember/api/v1.0/tasks/<int:id>', endpoint='task')
+api.add_resource(TaskList, '/remember/api/v1.0/tasks', endpoint='ep_tasks')
+api.add_resource(TaskListByStatus, '/remember/api/v1.0/tasks/find-by-status', endpoint='ep_taskByStatus')
+api.add_resource(TaskListByCategory, '/remember/api/v1.0/tasks/find-by-category', endpoint='ep_taskByCategory')
+api.add_resource(Task, '/remember/api/v1.0/tasks/<int:id>', endpoint='ep_task')
 
-api.add_resource(CategoryListAPI, '/remember/api/v1.0/categories', endpoint='categories')
-api.add_resource(CategoryAPI, '/remember/api/v1.0/categories/<int:id>', endpoint='category')
+api.add_resource(CategoryListAPI, '/remember/api/v1.0/categories', endpoint='ep_categories')
+api.add_resource(CategoryAPI, '/remember/api/v1.0/categories/<int:id>', endpoint='ep_category')
 
-api.add_resource(TagListAPI, '/remember/api/v1.0/tags', endpoint='tags')
-api.add_resource(TagAPI, '/remember/api/v1.0/tags/<int:id>', endpoint='tag')
+api.add_resource(TagListAPI, '/remember/api/v1.0/tags', endpoint='ep_tags')
+api.add_resource(TagAPI, '/remember/api/v1.0/tags/<int:id>', endpoint='ep_tag')
+
+api.add_resource(NoteListAPI, '/remember/api/v1.0/notes', endpoint='ep_notes')
+api.add_resource(NoteAPI, '/remember/api/v1.0/notes/<int:id>', endpoint='ep_note')
 
 api.add_resource(UploadAttachment, '/task/uploadAttachment', endpoint='uploadAttachment')
 
