@@ -35,7 +35,7 @@
     <label for="tag" class="col-xs-1 control-label">Tags</label>
     <div class="col-xs-9">
       	<label class="checkbox-inline" ng-repeat="tag in tagInfo.tags">
-            <input type="checkbox" value="tag.id" ng-checked="tagInfo.findTagById(tag.id) > -1" ng-click="tagInfo.toggleSelection(tag)"> {{tag.name}}
+            <input type="checkbox" value="tag.id" ng-model="tag.checked" ng-checked="tagInfo.findTagById(tag.id) > -1" ng-click="tagInfo.toggleSelection(tag)"> {{tag.name}}
         </label>
     </div>
   </div>
