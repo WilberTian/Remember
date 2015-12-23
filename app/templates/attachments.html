@@ -1,0 +1,63 @@
+<div id="attachment-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="panel panel-info">
+                <div class="panel-heading">Upload Attachment</div>
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <div id="select-file">
+                            <input type="file" file-upload multiple/>
+                        </div>
+                        <table ng-if="fileObjs.length > 0" class="table table-bordered table-condensed table-hover">
+                            <tr>
+                                <th>File</th>
+                                <th>Status</th>
+                                <th>Tags</th>
+                                <th>Upload</th>
+                                <th>Remove</th>
+                            </tr>
+                            <tr ng-repeat="fileObj in fileObjs">
+                                <td>{{fileObj.file.name}}</td>
+                                <td ng-if="fileObj.status != 'loading'" ng-class="fileObj.status">{{fileObj.status}}</td>
+                                <td ng-if="fileObj.status == 'loading'"><img src="app/images/loading.gif" alt="loading" height="20" width="20"/></td>
+                                <td>
+                                    <label class="checkbox-inline" ng-repeat="tag in tags" style="padding-top:0px;">
+                                        <input type="checkbox" value="tag.id" ng-click="fileObj.tagInfo.toggleSelection(tag.id)"> {{tag.name}}
+                                    </label>
+                                </td>
+                                <td>
+                                    <button class="btn btn-success btn-xs" type="submit" ng-click="attachmentOperations.createAttachment($index)" ng-disabled="fileObj.status == 'loading'"><span class="glyphicon glyphicon-upload"></span></button>
+                                </td>
+                                <td><button type="button" class="btn btn-danger btn-xs" ng-click="remveFileObj($index)" ng-disabled="fileObj.status == 'loading'"><span class="glyphicon glyphicon-remove"></span></button></td>
+                            </tr>
+                        </table>
+                        <button class="btn btn-primary" type="submit" ng-click="clearFileObjs()" ng-hide="fileObjs.length == 0">Clear</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <table ng-if="attachments.length > 0" class="table table-bordered table-condensed table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Identity</th>
+                    <th>Tags</th>
+                    <th>Delete</th>
+                </tr>
+                <tr ng-repeat="attachment in attachments">
+                    <td>
+                        {{attachment.name}}
+                    </td>
+                    <td>{{attachment.type}}</td>
+                    <td>{{attachment.identity}}</td>
+                    <td><span class="label label-info" ng-repeat="tag in attachment.tags">{{tag.name}}</span></td>
+                    <td><button type="button" class="btn btn-danger btn-xs" ng-click="attachmentOperations.deleteAttachment(attachment.id, $index)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

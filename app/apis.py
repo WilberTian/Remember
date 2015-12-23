@@ -3,9 +3,11 @@ from flask import Flask, jsonify, abort, make_response, render_template, request
 from flask.ext.restful import Api, Resource, reqparse, fields, marshal
 from flask.ext.httpauth import HTTPBasicAuth
 from app import app, api, auth, db, models
+import werkzeug
 import json
 import uuid
 import os
+
 
 @api.representation('application/json')
 def output_json(data, code, headers=None):
@@ -35,6 +37,14 @@ category_fields = {
     "id": fields.Integer,
     "name": fields.String,
     "description": fields.String
+}
+
+attachment_fields = {
+    "id": fields.Integer,
+    "name": fields.String,
+    "identity": fields.String,
+    "type": fields.String,
+    "tags": fields.List(fields.Nested(tag_fields))
 }
     
 task_fields = {
@@ -117,11 +127,7 @@ class Task(Resource):
         for k, v in args.items():
             if v is not None:
                 setattr(task, k, v)
-        '''
-        task.tags = []
-        for tag_id in args["tag_ids"]:
-            task.tags.append(models.Tag.query.filter_by(id=tag_id).first())
-        '''
+
         db.session.commit()
         return {'task': marshal(task, task_fields)}
 
@@ -342,18 +348,71 @@ app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
     
-    
-class UploadAttachment(Resource):
+class AttachmentListAPI(Resource):
     def __init__(self):
-        super(UploadAttachment, self).__init__
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('file', type=werkzeug.datastructures.FileStorage, location='files')
+        self.reqparse.add_argument('tags', type=str, default="", location='form')
+        super(AttachmentListAPI, self).__init__
+        
+    def get(self):
+        attachments = models.Attachment.query.all()
+        return {'attachments': [marshal(attachment, attachment_fields) for attachment in attachments]}        
         
     def post(self):
-        file = request.files['file']
-        if file and allowed_file(file.filename.lower()):
+        args = self.reqparse.parse_args()
+        file = args["file"]
+        tag_ids = []
+        if args["tags"]:
+            tag_ids = args["tags"].split(",")
+
+        #if file and allowed_file(file.filename.lower()):
+        if file:
+            raw_name = os.path.splitext(file.filename)[0]
             extension = os.path.splitext(file.filename)[1]
-            f_name = str(uuid.uuid4()) + extension          
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], f_name))
-            return {'filename':f_name}
+            identity = str(uuid.uuid4()) + "_" + raw_name + "_" + extension          
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], identity))
+
+            tags = [models.Tag.query.filter_by(id = tag_id).first() for tag_id in tag_ids]
+
+            attachment = models.Attachment(raw_name, extension, identity, tags)
+            db.session.add(attachment)
+            db.session.commit();
+            
+            return {'attachment': marshal(attachment, attachment_fields)}, 201
+            
+class AttachmentAPI(Resource):
+    def __init__(self):
+        self.reqparse = reqparse.RequestParser()
+        self.reqparse.add_argument('tags', type=str, default="", location='form')
+        super(AttachmentAPI, self).__init__
+        
+    def put(self, id):
+        attachment = models.Attachment.filter_by(id=id).first()
+    
+        if not attachment:
+            abort(404)
+ 
+        args = self.reqparse.parse_args()
+        args.tags = [models.Tag.query.filter_by(id = tag_id).first() for tag_id in tag_ids]
+        
+        for k, v in args.items():
+            if v is not None:
+                setattr(attachment, k, v)
+     
+        db.session.commit()
+        return {'attachment': marshal(attachment, attachment_fields)}
+        
+    def delete(self, id):
+        attachment = models.Attachment.query.filter_by(id=id).first()
+        
+        if not attachment:
+            abort(404)
+            
+        db.session.delete(attachment)
+        db.session.commit()
+        return {'attachment': attachment.id}
+  
      
 api.add_resource(TaskList, '/remember/api/v1.0/tasks', endpoint='ep_tasks')
 api.add_resource(TaskListByStatus, '/remember/api/v1.0/tasks/find-by-status', endpoint='ep_taskByStatus')
@@ -369,7 +428,8 @@ api.add_resource(TagAPI, '/remember/api/v1.0/tags/<int:id>', endpoint='ep_tag')
 api.add_resource(NoteListAPI, '/remember/api/v1.0/notes', endpoint='ep_notes')
 api.add_resource(NoteAPI, '/remember/api/v1.0/notes/<int:id>', endpoint='ep_note')
 
-api.add_resource(UploadAttachment, '/task/uploadAttachment', endpoint='uploadAttachment')
+api.add_resource(AttachmentListAPI, '/remember/api/v1.0/attachments', endpoint='ep_attachments')
+api.add_resource(AttachmentAPI, '/remember/api/v1.0/attachments/<int:id>', endpoint='ep_attachment')
 
 
 

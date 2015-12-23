@@ -1,4 +1,5 @@
-var app = angular.module("remember", ["xeditable", "ngRoute", "remember.taskServices", "remember.categoryServices", "remember.tagServices", "remember.noteServices", "remember.directives"]);
+var app = angular.module("remember", ["xeditable", "ngRoute", "remember.taskServices", "remember.categoryServices", 
+    "remember.tagServices", "remember.noteServices", "remember.attachmentServices", "remember.directives"]);
 
 app.config(function($routeProvider){
     $routeProvider.
@@ -80,6 +81,17 @@ app.config(function($routeProvider){
                 }
             },
             templateUrl: "notes"
+        }).when("/attachments", {
+            controller: "AttachmentController", 
+            resolve: {
+                attachments: function(AttachmentListLoader){
+                    return AttachmentListLoader();
+                },
+                tags: function(TagListLoader){
+                    return TagListLoader();
+                }
+            },
+            templateUrl: "attachments"
         }).otherwise({redirectTo:'/'});
 
 

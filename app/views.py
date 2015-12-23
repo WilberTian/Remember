@@ -58,7 +58,11 @@ def tag_info():
 
 @app.route("/notes")
 def notes():
-    return render_template("notes.html")        
+    return render_template("notes.html")       
+
+@app.route("/attachments")
+def attachments():
+    return render_template("attachments.html")        
     
 @app.route("/swagger/swagger_config")
 def swagger_json():

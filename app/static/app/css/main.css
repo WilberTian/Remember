@@ -68,7 +68,7 @@ textarea {
     margin-top: 2px;
 }
 
-#task-container{
+#task-container, #attachment-container{
     padding:10px;
 }
 
@@ -151,3 +151,17 @@ textarea {
 .note-editor{
     width: 100%;
 }
+
+#select-file {
+    width: 135px;
+    height: 35px;
+    background: url(../../app/images/select-file.png);
+    margin-bottom: 10px;
+}
+
+#select-file input {
+    width: 135px !important;
+    height: 35px !important;
+    opacity: 0 !important;
+}
+#select-file input:hover { cursor: pointer;}
