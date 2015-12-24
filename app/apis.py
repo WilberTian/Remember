@@ -389,13 +389,11 @@ class AttachmentAPI(Resource):
         
     def get(self, id):
         attachment = models.Attachment.query.filter_by(id=id).first()
-    
+
         if not attachment:
             abort(404)
             
-        identity = attachment.identity
-        
-        return app.send_static_file(os.path.join(app.config['UPLOAD_FOLDER'], identity))
+        return {'attachment': marshal(attachment, attachment_fields)}
         
     def put(self, id):
         attachment = models.Attachment.query.filter_by(id=id).first()
