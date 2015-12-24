@@ -370,7 +370,7 @@ class AttachmentListAPI(Resource):
         if file:
             raw_name = os.path.splitext(file.filename)[0]
             extension = os.path.splitext(file.filename)[1]
-            identity = str(uuid.uuid4()) + "_" + raw_name + "_" + extension          
+            identity = str(uuid.uuid4()) + extension          
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], identity))
 
             tags = [models.Tag.query.filter_by(id = tag_id).first() for tag_id in tag_ids]
