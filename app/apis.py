@@ -341,7 +341,7 @@ class NoteAPI(Resource):
      
 
 # This is the path to the upload directory
-app.config['UPLOAD_FOLDER'] = 'uploads/'
+app.config['UPLOAD_FOLDER'] = 'app/static/uploads/'
 # These are the extension that we are accepting to be uploaded
 app.config['ALLOWED_EXTENSIONS'] = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'py'])
     
@@ -387,8 +387,18 @@ class AttachmentAPI(Resource):
         self.reqparse.add_argument('tags', type=str, default="", location='form')
         super(AttachmentAPI, self).__init__
         
+    def get(self, id):
+        attachment = models.Attachment.query.filter_by(id=id).first()
+    
+        if not attachment:
+            abort(404)
+            
+        identity = attachment.identity
+        
+        return app.send_static_file(os.path.join(app.config['UPLOAD_FOLDER'], identity))
+        
     def put(self, id):
-        attachment = models.Attachment.filter_by(id=id).first()
+        attachment = models.Attachment.query.filter_by(id=id).first()
     
         if not attachment:
             abort(404)
