@@ -29,15 +29,15 @@
                           </button>
                         </form>
                         <div class="buttons" ng-show="!rowform.$visible">
-                          <button class="btn btn-default" ng-click="rowform.$show()"><span class="glyphicon glyphicon-pencil"></span></button>
-                          <button class="btn btn-default" ng-click="tagOperations.deleteTag(tag.id, $index)"><span class="glyphicon glyphicon-remove"></span></button>
+                          <button class="btn btn-info btn-xs" ng-click="rowform.$show()"><span class="glyphicon glyphicon-pencil"></span></button>
+                          <button class="btn btn-danger btn-xs" ng-click="tagOperations.deleteTag(tag.id, $index)"><span class="glyphicon glyphicon-remove"></span></button>
                         </div>  
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="panel-footer">
-            <button class="btn btn-default" ng-click="tagOperations.createTag()">Create</button>
+            <button class="btn btn-primary" ng-click="tagOperations.createTag()">Create</button>
         </div>
     </div>
     

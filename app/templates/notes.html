@@ -1,6 +1,6 @@
 <div id="toolbar" class="row">
     <div class="btn-group col-xs-2" role="group" >
-        <button type="button" class="btn btn-default" ng-click="noteOperations.createNote()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+        <button type="button" class="btn btn-info" ng-click="noteOperations.createNote()"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
     </div>
 </div>
 
@@ -15,7 +15,7 @@
             <button type="button" class="btn btn-default" ng-click="item.status.preview = false" ng-disabled="!item.status.preview"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
             <button type="button" class="btn btn-default" ng-click="noteOperations.updateNote(item.note.id, $index);"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
         </div>
-      	<select class="form-control input-sm pull-right" style="width:60px;" ng-disabled="item.status.viewMode"  ng-options="width for width in [1,2,3,4,5,6,7,8,9,10,11,12]" ng-model="item.note.width"></select>
+      	<select class="form-control input-xs pull-right" style="width:60px;" ng-disabled="item.status.viewMode"  ng-options="width for width in [1,2,3,4,5,6,7,8,9,10,11,12]" ng-model="item.note.width"></select>
         <div ng-if="!item.status.preview && !item.status.viewMode">
             <textarea elastic class="note-editor" ng-model="item.note.content"></textarea>
         </div>
