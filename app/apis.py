@@ -421,6 +421,11 @@ class AttachmentAPI(Resource):
             
         db.session.delete(attachment)
         db.session.commit()
+        
+        # delete the uploaded file from disk
+        identity = attachment.identity
+        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], identity))
+        
         return {'attachment': attachment.id}
   
      
