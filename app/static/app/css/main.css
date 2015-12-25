@@ -167,6 +167,6 @@ textarea {
 #select-file input:hover { cursor: pointer;}
 
 #task-description{
-    padding:20px;
-    border-left: 3px solid #eee;
+    padding-left:20px;
+    border-left: 3px solid #bbb;
 }
