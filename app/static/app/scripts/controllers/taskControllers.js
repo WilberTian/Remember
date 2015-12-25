@@ -98,7 +98,7 @@ app.controller("EditTaskController", function($scope, $location, Task, task, cat
         
         Task.update({ id: $scope.task.id }, $scope.task).$promise.then(
             function(response){
-                $location.path("/");
+                $location.path("/view/" + response["task"].id);
             },
             function(){
                 alert("fail to update task");

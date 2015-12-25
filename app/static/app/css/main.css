@@ -165,3 +165,8 @@ textarea {
     opacity: 0 !important;
 }
 #select-file input:hover { cursor: pointer;}
+
+#task-description{
+    padding:20px;
+    border-left: 3px solid #eee;
+}
