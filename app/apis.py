@@ -384,7 +384,8 @@ class AttachmentListAPI(Resource):
 class AttachmentAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('tags', type=str, default="", location='form')
+        self.reqparse.add_argument('name', type=str, default="", location='json')
+        self.reqparse.add_argument('tags', type=list, default=[], location='json')
         super(AttachmentAPI, self).__init__
         
     def get(self, id):
@@ -402,12 +403,14 @@ class AttachmentAPI(Resource):
             abort(404)
  
         args = self.reqparse.parse_args()
-        args.tags = [models.Tag.query.filter_by(id = tag_id).first() for tag_id in tag_ids]
+        tags = args["tags"]
+        
+        args.tags = [models.Tag.query.filter_by(id = tag).first() for tag in tags]
         
         for k, v in args.items():
             if v is not None:
                 setattr(attachment, k, v)
-     
+        print attachment
         db.session.commit()
         return {'attachment': marshal(attachment, attachment_fields)}
         

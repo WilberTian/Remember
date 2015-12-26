@@ -46,6 +46,7 @@
                     <th>Type</th>
                     <th>Identity</th>
                     <th>Tags</th>
+                    <th>Edit</th>
                     <th>Delete</th>
                 </tr>
                 <tr ng-repeat="attachment in attachments">
@@ -54,7 +55,8 @@
                     </td>
                     <td>{{attachment.type}}</td>
                     <td>{{attachment.identity}}</td>
-                    <td><span class="label label-info" ng-repeat="tag in attachment.tags">{{tag.name}}</span></td>
+                    <td><span class="label label-info" ng-repeat="tag in attachment.tags track by tag.id">{{tag.name}}</span></td>
+                    <td><button type="button" class="btn btn-primary btn-xs" ng-click="attachmentOperations.updateAttachment($index)"><span class="glyphicon glyphicon-edit"></span></button></td>
                     <td><button type="button" class="btn btn-danger btn-xs" ng-click="attachmentOperations.deleteAttachment(attachment.id, $index)"><span class="glyphicon glyphicon-remove"></span></button></td>
                 </tr>
             </table>

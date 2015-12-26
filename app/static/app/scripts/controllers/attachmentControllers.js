@@ -1,4 +1,4 @@
-app.controller("AttachmentController", function($scope, Attachment, AttachmentUploader, attachments, tags){
+app.controller("AttachmentController", function($scope, Attachment, AttachmentUploader, attachments, tags, $uibModal, $log){
     $scope.attachments = attachments["attachments"];
     $scope.tags = tags["tags"];
     $scope.fileObjs = [];
@@ -58,35 +58,34 @@ app.controller("AttachmentController", function($scope, Attachment, AttachmentUp
             );
         },
         "updateAttachment": function(index){
-            var attachment = $scope.attachments[index];
-        
-            if(attachment.id == -1){
-                // create a new attachment
-                delete attachment["id"];
-                Attachment.save(attachment).$promise.then(
+            var editAttachmentModalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: "edit-attachment-modal",
+                controller: "EditAttachmentModalController",
+                size: "lg",
+                resolve: {
+                    attachment: function () {
+                        return $scope.attachments[index];
+                    }, 
+                    tags: function(){
+                        return $scope.tags;
+                    }
+                }
+            });
+    
+            editAttachmentModalInstance.result.then(function (attachment) {
+                Attachment.update({ id: attachment.id }, attachment).$promise.then(
                     function(response){
                         console.log(response);
                         $scope.attachments[index] = response["attachment"];
                     },
                     function(){
-                        alert("fail to create attachment");
-                    }
-                );
-            }
-            else{
-                // update the attachment
-                Attachment.update({ id: attachment.id }, attachment).$promise.then(
-                    function(response){
-                        console.log(response);
-
-                    },
-                    function(){
                         alert("fail to update attachment");
                     }
                 );
-                
-                
-            }
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
         },
         "removeUnusedRow": function(index, attachment){
             if(attachment.id == -1){
@@ -98,4 +97,32 @@ app.controller("AttachmentController", function($scope, Attachment, AttachmentUp
     
 });
 
+    
+app.controller("EditAttachmentModalController", function ($scope, $uibModalInstance, attachment, tags) {
+    $scope.attachment = _.clone(attachment);
 
+    var tagInfo = {
+        "tags": tags,
+        "selectedTags": [],
+        "toggleSelection": function(id){
+            var index = this.selectedTags.indexOf(id);
+            if(index > -1){
+                this.selectedTags.splice(index, 1)
+            }
+            else{
+                this.selectedTags.push(id);
+            }
+        }
+    };
+    tagInfo.selectedTags = _.map(attachment.tags, function(tag){ return tag.id; });
+    $scope.tagInfo = tagInfo;
+    
+    $scope.save = function () {
+        $scope.attachment.tags = $scope.tagInfo.selectedTags;
+        $uibModalInstance.close($scope.attachment);
+    };
+    
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+});    

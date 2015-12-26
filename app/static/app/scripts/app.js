@@ -1,5 +1,5 @@
 var app = angular.module("remember", ["xeditable", "ngRoute", "remember.taskServices", "remember.categoryServices", 
-    "remember.tagServices", "remember.noteServices", "remember.attachmentServices", "remember.directives"]);
+    "remember.tagServices", "remember.noteServices", "remember.attachmentServices", "remember.directives", "ui.bootstrap"]);
 
 app.config(function($routeProvider){
     $routeProvider.

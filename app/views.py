@@ -63,6 +63,10 @@ def notes():
 @app.route("/attachments")
 def attachments():
     return render_template("attachments.html")        
+ 
+@app.route("/edit-attachment-modal")
+def edit_attachment():
+    return render_template("edit-attachment-modal.html")     
     
 @app.route("/swagger/swagger_config")
 def swagger_json():
