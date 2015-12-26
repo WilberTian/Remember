@@ -68,6 +68,10 @@ def attachments():
 def edit_attachment():
     return render_template("edit-attachment-modal.html")     
     
+@app.route("/confirm-modal")
+def confirm_modal():
+    return render_template("confirm-modal.html")         
+    
 @app.route("/swagger/swagger_config")
 def swagger_json():
     #return (swagger_config)

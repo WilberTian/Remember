@@ -1,4 +1,4 @@
-app.controller("NoteInfoController", function($scope, Note, notes){
+app.controller("NoteInfoController", function($scope, Note, notes, ConfirmModalService){
     $scope.items = []
     
     for(var i = 0; i < notes["notes"].length; i++){
@@ -28,14 +28,25 @@ app.controller("NoteInfoController", function($scope, Note, notes){
             
         },
         "deleteNote": function(id, index){
-            Note.delete({id: id}).$promise.then(
-                function(response){
-                    $scope.items.splice(index, 1);
-                },
-                function(){
-                    alert("fail to delete note");
-                }
-            );
+            var modalOptions = {
+                closeButtonText: "Cancel",
+                actionButtonText: "Delete",
+                headerText: "Delete note?",
+                bodyText: "Are you sure you want to delete this note?"
+            };
+
+            ConfirmModalService.showModal({}, modalOptions).then(function () {
+                Note.delete({id: id}).$promise.then(
+                    function(response){
+                        $scope.items.splice(index, 1);
+                    },
+                    function(){
+                        alert("fail to delete note");
+                    }
+                );
+            }, function(){
+                console.log('Modal dismissed at: ' + new Date());
+            });
         },
         "updateNote": function(id, index){
             var note = $scope.items[index].note;

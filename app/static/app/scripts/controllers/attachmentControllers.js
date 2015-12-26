@@ -1,4 +1,4 @@
-app.controller("AttachmentController", function($scope, Attachment, AttachmentUploader, attachments, tags, $uibModal, $log){
+app.controller("AttachmentController", function($scope, Attachment, AttachmentUploader, attachments, tags, $uibModal, $log, ConfirmModalService){
     $scope.attachments = attachments["attachments"];
     $scope.tags = tags["tags"];
     $scope.fileObjs = [];
@@ -48,14 +48,26 @@ app.controller("AttachmentController", function($scope, Attachment, AttachmentUp
 
         },
         "deleteAttachment": function(id, index){
-            Attachment.delete({id: id}).$promise.then(
-                function(response){
-                    $scope.attachments.splice(index, 1);
-                },
-                function(){
-                    alert("fail to delete attachment");
-                }
-            );
+            var modalOptions = {
+                closeButtonText: "Cancel",
+                actionButtonText: "Delete",
+                headerText: "Delete " +$scope.attachments[index].name + "?",
+                bodyText: "Are you sure you want to delete " + $scope.attachments[index].name +"?"
+            };
+
+            ConfirmModalService.showModal({}, modalOptions).then(function () {
+                Attachment.delete({id: id}).$promise.then(
+                    function(response){
+                        $scope.attachments.splice(index, 1);
+                    },
+                    function(){
+                        alert("fail to delete attachment");
+                    }
+                );
+            }, function(){
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
         },
         "updateAttachment": function(index){
             var editAttachmentModalInstance = $uibModal.open({

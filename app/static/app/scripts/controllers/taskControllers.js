@@ -112,7 +112,7 @@ app.controller("EditTaskController", function($scope, $location, Task, task, cat
     
 });
 
-app.controller("ViewTaskController", function($scope, $location, task, Task){
+app.controller("ViewTaskController", function($scope, $location, task, Task, ConfirmModalService){
     $scope.task = task["task"];
     
     $scope.editTask = function(){
@@ -120,15 +120,26 @@ app.controller("ViewTaskController", function($scope, $location, task, Task){
     };
     
     $scope.deleteTask = function(){
-        Task.delete({id: $scope.task.id}).$promise.then(
-            function(response){
-                $location.path("/");
-            },
-            function(){
-                alert("fail to delete task");
-            }
-        );
+    
+        var modalOptions = {
+            closeButtonText: "Cancel",
+            actionButtonText: "Delete",
+            headerText: "Delete " + $scope.task.name + "?",
+            bodyText: "Are you sure you want to delete " + $scope.task.name + "?"
+        };
         
+        ConfirmModalService.showModal({}, modalOptions).then(function () {
+            Task.delete({id: $scope.task.id}).$promise.then(
+                function(response){
+                    $location.path("/");
+                },
+                function(){
+                    alert("fail to delete task");
+                }
+            );
+        }, function(){
+            console.log('Modal dismissed at: ' + new Date());
+        });
     };
 });
 
