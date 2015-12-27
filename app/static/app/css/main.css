@@ -1,7 +1,7 @@
 
 
 #sidebar-wrapper {
-    z-index: 1000;
+    z-index: 8;
     position: fixed;
     left: 60px;
     width: 0;
@@ -65,7 +65,6 @@ task list page
 
 textarea {
     resize: vertical;
-    margin-top: 2px;
 }
 
 #task-container, #attachment-container{
@@ -166,7 +165,20 @@ textarea {
 }
 #select-file input:hover { cursor: pointer;}
 
-#task-description{
+#task-description, .description-preview{
     padding-left:20px;
     border-left: 3px solid #bbb;
+}
+
+.CodeMirror-preview-fullscreen{
+    position: fixed !important;
+    top: 0px !important;
+    right: 0px !important;
+    bottom: 0px !important;
+    left: 50% !important;
+    height: auto !important;
+    overflow: scroll !important;
+    z-index:10;
+    background: white;
+    padding:10px;   
 }

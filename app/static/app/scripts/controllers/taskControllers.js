@@ -5,6 +5,34 @@ var dimensions = [
 	{"id": 4, "name": "Not Important and not Urgent"}
 ];
 
+
+var mdEditorOptions = {
+    lineNumbers: true, 
+    theme:"twilight", 
+    lineWrapping : true, 
+    mode: "markdown", 
+    keyMap: "sublime", 
+    smartIndent: true, 
+    showCursorWhenSelecting: true,
+    extraKeys: {
+        "Esc": function(cm) {
+            if (cm.getOption("fullScreen")) {
+                cm.setOption("fullScreen", false);
+                $(".description-preview").parent().addClass("ng-hide");
+                $(".description-preview").removeClass("CodeMirror-preview-fullscreen");
+            }
+        },
+        "F11": function(cm) {
+            if (!cm.getOption("fullScreen")) {
+                cm.setOption("fullScreen", true);
+                $(".description-preview").parent().removeClass("ng-hide");
+                $(".description-preview").addClass("CodeMirror-preview-fullscreen");
+            }
+        }   
+    }
+}
+
+
 app.controller("TastListController", function($scope, tasks, categories, tags){
     $scope.tasks = tasks["tasks"];
     $scope.categories = categories["categories"];
@@ -13,6 +41,8 @@ app.controller("TastListController", function($scope, tasks, categories, tags){
 });
 
 app.controller("CreateTaskController", function($scope, $location, Task, categories, tags){
+    $scope.mdEditorOptions = mdEditorOptions;
+    
     $scope.categoryInfo = {
             "categories": categories["categories"], 
     };
@@ -56,6 +86,8 @@ app.controller("CreateTaskController", function($scope, $location, Task, categor
 });
 
 app.controller("EditTaskController", function($scope, $location, Task, task, categories, tags){
+    $scope.mdEditorOptions = mdEditorOptions;
+    
     $scope.task = task["task"];
 
     $scope.categoryInfo = {

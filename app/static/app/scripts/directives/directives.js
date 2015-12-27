@@ -36,6 +36,7 @@ directives.directive('elastic', [
                 var resize = function() {
                     element[0].style.height = $scope.initialHeight;
                     element[0].style.height = "" + (element[0].scrollHeight + 10) +  "px";
+                    console.log("resize")
                 };
                 element.on("input change", resize);
 
