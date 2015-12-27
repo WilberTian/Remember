@@ -166,8 +166,12 @@ textarea {
 #select-file input:hover { cursor: pointer;}
 
 #task-description, .description-preview{
-    padding-left:20px;
+    padding:10px;
     border-left: 3px solid #bbb;
+    line-height: 1.6;
+    font-family: sans-serif;
+    font-size: medium;
+    background-color:#f8f8f8;
 }
 
 .CodeMirror-preview-fullscreen{
