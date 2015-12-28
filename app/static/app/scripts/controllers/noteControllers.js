@@ -1,14 +1,14 @@
 app.controller("NoteInfoController", function($scope, Note, notes, ConfirmModalService){
-    $scope.items = []
-    
-    for(var i = 0; i < notes["notes"].length; i++){
-        $scope.items[i] = {};
-        $scope.items[i].note = notes["notes"][i];
-        $scope.items[i].status = {
+    $scope.items = _.map(notes["notes"], function(note){
+        var item = {};
+        item.note = note;
+        item.status = {
             "viewMode": true,
             "preview": false
         };
-    }
+        
+        return item;
+    });
 
     $scope.noteOperations = {
         "createNote": function(){
