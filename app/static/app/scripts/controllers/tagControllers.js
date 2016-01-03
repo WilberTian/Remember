@@ -1,4 +1,4 @@
-app.controller("TagInfoController", function($scope, Tag, tags){
+app.controller("TagInfoController", function($scope, ConfirmModalService, Tag, tags){
     $scope.tags = tags["tags"];
     
     $scope.tagOperations = {
@@ -12,14 +12,27 @@ app.controller("TagInfoController", function($scope, Tag, tags){
             
         },
         "deleteTag": function(id, index){
-            Tag.delete({id: id}).$promise.then(
-                function(response){
-                    $scope.tags.splice(index, 1);
-                },
-                function(){
-                    alert("fail to delete tag");
-                }
-            );
+        	
+        	var modalOptions = {
+                closeButtonText: "Cancel",
+                actionButtonText: "Delete",
+                headerText: "Delete tag?",
+                bodyText: "Are you sure you want to delete " + $scope.tags[index].name + "?"
+            };
+
+            ConfirmModalService.showModal({}, modalOptions).then(function () {
+            	Tag.delete({id: id}).$promise.then(
+                    function(response){
+                        $scope.tags.splice(index, 1);
+                    },
+                    function(){
+                        alert("fail to delete tag");
+                    }
+                );
+            }, function(){
+                console.log('Modal dismissed at: ' + new Date());
+            });
+                
         },
         "updateTag": function(index){
             var tag = $scope.tags[index];

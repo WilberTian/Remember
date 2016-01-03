@@ -1,4 +1,4 @@
-app.controller("CategoryInfoController", function($scope, Category, categories){
+app.controller("CategoryInfoController", function($scope, ConfirmModalService, Category, categories){
     $scope.categories = categories["categories"];
     
     $scope.categoryOperations = {
@@ -12,14 +12,27 @@ app.controller("CategoryInfoController", function($scope, Category, categories){
             
         },
         "deleteCategory": function(id, index){
-            Category.delete({id: id}).$promise.then(
-                function(response){
-                    $scope.categories.splice(index, 1);
-                },
-                function(){
-                    alert("fail to delete category");
-                }
-            );
+        	
+        	var modalOptions = {
+                closeButtonText: "Cancel",
+                actionButtonText: "Delete",
+                headerText: "Delete category?",
+                bodyText: "Are you sure you want to delete " + $scope.categories[index].name + "?"
+            };
+
+            ConfirmModalService.showModal({}, modalOptions).then(function () {
+            	Category.delete({id: id}).$promise.then(
+                    function(response){
+                        $scope.categories.splice(index, 1);
+                    },
+                    function(){
+                        alert("fail to delete category");
+                    }
+                );
+            }, function(){
+                console.log('Modal dismissed at: ' + new Date());
+            });
+
         },
         "updateCategory": function(index){
             var category = $scope.categories[index];
