@@ -186,3 +186,7 @@ textarea {
     background: white;
     padding:10px;   
 }
+
+.checkbox-inline, .radio-inline{
+	margin-left: 10px;
+}
