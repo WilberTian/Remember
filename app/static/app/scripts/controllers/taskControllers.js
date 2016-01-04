@@ -43,6 +43,9 @@ app.controller("TastListController", function($scope, tasks, categories, tags){
     	$scope.selectedCategory = null;
     	$scope.selectedTag = null;
     };
+    
+    $scope.taskStatus = ["All", "Complete", "Incomplete"];
+    $scope.selectedStatus = "Incomplete";
 });
 
 app.controller("CreateTaskController", function($scope, $location, Task, categories, tags){

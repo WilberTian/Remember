@@ -1,22 +1,25 @@
 <div id="toolbar" class="row">
     
-    <div class="col-xs-2">
-        <select class="form-control"  ng-options="category.name for category in categories track by category.id" ng-model="selectedCategory"></select>
+    <div class="form-inline">
+    	<div class="fprm-group col-xs-6">
+	    	<label class="control-label">Category:</label>
+	        <select placeholder="select your beverage" class="form-control"  ng-options="category.name for category in categories track by category.id" ng-model="selectedCategory"></select>
+	    	<label class="control-label">Tag:</label>
+	        <select class="form-control"  ng-options="tag.name for tag in tags track by tag.id" ng-model="selectedTag"></select>
+	        <button class="btn btn-info" ng-click="clearFilter()" ng-disabled="selectedTag == null && selectedCategory == null">Clear Filter</button>
+	        <a class="btn btn-info" href="#/create"><span class="glyphicon glyphicon-plus"></span></a>
+    	</div>
+    	<div class="form-group col-xs-2">
+    		<label class="control-label">Status:</label>
+	        <select class="form-control"  ng-options="status for status in taskStatus" ng-model="selectedStatus"></select>
+    	</div>
+    	<div class="form-group col-xs-2">
+    		<div class="btn-group" role="group" >
+		        <button class="btn btn-info" ng-click="taskView = 'list'" ng-disabled="taskView == 'list'"><span class="glyphicon glyphicon-th-list"></span></button>
+		        <button class="btn btn-info" ng-click="taskView = 'group'" ng-disabled="taskView == 'group'"><span class="glyphicon glyphicon-th-large"></span></button>
+		    </div>
+    	</div>
     </div>
-    <div class="col-xs-2">
-        <select class="form-control"  ng-options="tag.name for tag in tags track by tag.id" ng-model="selectedTag"></select>
-    </div>
-    <div class="col-xs-3">
-        <button class="btn btn-info" ng-click="clearFilter()" ng-disabled="selectedTag == null && selectedCategory == null">Clear Filter</button>
-        <a class="btn btn-info" href="#/create"><span class="glyphicon glyphicon-plus"></span></a>
-    </div>
-    
-    <div class="btn-group col-xs-2" role="group" >
-        <button class="btn btn-info" ng-click="taskView = 'list'" ng-disabled="taskView == 'list'"><span class="glyphicon glyphicon-th-list"></span></button>
-        <button class="btn btn-info" ng-click="taskView = 'group'" ng-disabled="taskView == 'group'"><span class="glyphicon glyphicon-th-large"></span></button>
-    </div>
-    
-
 </div>
 
 <div id="task-container" ng-init="taskView = 'list'">
@@ -29,7 +32,7 @@
                 <th>Category</th>
                 <th>Tags</th>
             </tr>
-            <tr ng-repeat="task in tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name">
+            <tr ng-repeat="task in tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name | taskStatus:selectedStatus">
                 <td>
                     <span class="dimension-mark" ng-class="{strike: task.dimension ==3 || task.dimension == 4 }">I</span>
                     <span class="dimension-mark" ng-class="{strike: task.dimension ==2 || task.dimension == 4 }">U</span>
@@ -44,7 +47,7 @@
     <div id="task-group-view" ng-show="taskView == 'group'">
         <div ng-repeat="dimension in dimensions" class=" col-xs-3">
             <div class="dimension-header">{{dimension.name}}</div>
-            <div ng-repeat="task in tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name" ng-if="task.dimension == dimension.id" class="col-xs-12 task-list-item" ng-class="task.done?'task-complete':'task-incomplete'">
+            <div ng-repeat="task in tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name | taskStatus:selectedStatus" ng-if="task.dimension == dimension.id" class="col-xs-12 task-list-item" ng-class="task.done?'task-complete':'task-incomplete'">
                 <div class="pull-right">
                     <span class="dimension-mark" ng-class="{strike: dimension.id ==3 || dimension.id == 4 }">I</span>
                     <span class="dimension-mark" ng-class="{strike: dimension.id ==2 || dimension.id == 4 }">U</span>

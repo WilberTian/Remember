@@ -41,7 +41,6 @@ filters.filter("attachmentTags", function(){
 
 filters.filter("taskCategory", function(){
 	return function(tasks, category){
-		console.log(category);
 		if(!category || category.trim() == ''){
 			return tasks;
 		}
@@ -63,6 +62,24 @@ filters.filter("taskTag", function(){
 			return _.some(tags, function(tagObj){
 				return tagObj.name == tag;
 			});
+		});
+	}
+});
+
+filters.filter("taskStatus", function(){
+	return function(tasks, status){
+		if(status == "All"){
+			return tasks;
+		}
+		
+		return _.filter(tasks, function(task){
+			if(status == "Complete"){
+				return task.done;
+			}
+			else{
+				return !task.done;
+			}
+			
 		});
 	}
 });
