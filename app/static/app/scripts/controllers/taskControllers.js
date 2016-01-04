@@ -38,6 +38,11 @@ app.controller("TastListController", function($scope, tasks, categories, tags){
     $scope.categories = categories["categories"];
     $scope.tags = tags["tags"];
     $scope.dimensions = dimensions;
+    
+    $scope.clearFilter = function(){
+    	$scope.selectedCategory = null;
+    	$scope.selectedTag = null;
+    };
 });
 
 app.controller("CreateTaskController", function($scope, $location, Task, categories, tags){

@@ -38,3 +38,31 @@ filters.filter("attachmentTags", function(){
 		});
 	}
 });
+
+filters.filter("taskCategory", function(){
+	return function(tasks, category){
+		console.log(category);
+		if(!category || category.trim() == ''){
+			return tasks;
+		}
+		
+		return _.filter(tasks, function(task){
+			return task.category.name == category;
+		});
+	}
+});
+
+filters.filter("taskTag", function(){
+	return function(tasks, tag){
+		if(!tag || tag.trim() == ''){
+			return tasks;
+		}
+		
+		return _.filter(tasks, function(task){
+			var tags = task.tags;
+			return _.some(tags, function(tagObj){
+				return tagObj.name == tag;
+			});
+		});
+	}
+});
