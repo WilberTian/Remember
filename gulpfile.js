@@ -8,39 +8,39 @@ var gulp = require("gulp"),
       jslint = require("gulp-jslint")
 
 var paths = {
-    scripts: ["static/app/scripts/**/*.js"],
-    css: "static/app/css/main.css",
-    images: "static/app/images/*",
-    html: "templates/*"
+    scripts: ["app/static/app/scripts/**/*.js"],
+    css: "app/static/app/css/main.css",
+    images: "app/static/app/images/*",
+    html: "app/templates/*"
 };      
       
 gulp.task("clean", function() {
-    gulp.src(["static/app/build/"], {read: false})
+    gulp.src(["app/static/app/build/"], {read: false})
         .pipe(clean({force: true}));
 });
       
 gulp.task("minjs", function(){
     gulp.src(paths.scripts)
         .pipe(uglify())
-        .pipe(gulp.dest("static/app/build/scripts"));
+        .pipe(gulp.dest("app/static/app/build/scripts"));
 });
 
 gulp.task("mincss", function(){
     gulp.src(paths.css)
         .pipe(minifycss())
-        .pipe(gulp.dest("static/app/build/css"))
+        .pipe(gulp.dest("app/static/app/build/css"))
 });
 
 gulp.task("minhtml", function(){
     gulp.src(paths.html)
         .pipe(htmlmin({collapseWhitespace: true, minifyJS: true, minifyCss: true}))
-        .pipe(gulp.dest("static/app/build/templates"));
+        .pipe(gulp.dest("app/static/app/build/templates"));
 });
 
 gulp.task("minimage", function(){
     gulp.src(paths.images)
         .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
-        .pipe(gulp.dest("static/app/build/images"))
+        .pipe(gulp.dest("app/static/app/build/images"))
 });
 
 gulp.task("jslint", function(){
