@@ -135,7 +135,8 @@ app.controller("EditTaskController", function($scope, $location, Task, task, cat
     
     $scope.updateTask = function(){
         $scope.task.tags = $scope.tagInfo.selection;
-        
+        $scope.task.dimension = $scope.task.dimension.id;
+
         Task.update({ id: $scope.task.id }, $scope.task).$promise.then(
             function(response){
                 $location.path("/view/" + response["task"].id);

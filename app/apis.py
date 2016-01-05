@@ -104,6 +104,7 @@ class Task(Resource):
         self.reqparse.add_argument('done', type=bool, location='json')
         self.reqparse.add_argument('category', type=dict, location='json')
         self.reqparse.add_argument('tags', type=list, location='json')
+        self.reqparse.add_argument('dimension', type=int, required=True, location='json') 
         super(Task, self).__init__()
 
     def get(self, id):
