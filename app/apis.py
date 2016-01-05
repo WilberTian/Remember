@@ -25,7 +25,8 @@ def output_xml(data, code, headers=None):
 note_fields = {
     "id": fields.Integer,
     "content": fields.String,
-    "width": fields.Integer
+    "width": fields.Integer,
+    "color": fields.String
 }       
     
 tag_fields = {
@@ -285,8 +286,9 @@ class NoteListAPI(Resource):
 
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('content', type=unicode, required=True, help='No note content provided', location='json')
-        self.reqparse.add_argument('width', type=int, default=1, location='json')       
+        self.reqparse.add_argument("content", type=unicode, required=True, help="No note content provided", location="json")
+        self.reqparse.add_argument("width", type=int, default=1, location="json")    
+        self.reqparse.add_argument("color", type=str, location="json")       
         super(NoteListAPI, self).__init__()
 
     def get(self):
@@ -296,7 +298,7 @@ class NoteListAPI(Resource):
     def post(self):
         args = self.reqparse.parse_args()
         print args
-        note = models.Note(args["content"], args["width"])
+        note = models.Note(args["content"], args["width"], args["color"])
         db.session.add(note)
         db.session.commit();
         return {'note': marshal(note, note_fields)}, 201
@@ -306,8 +308,9 @@ class NoteAPI(Resource):
 
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('content', type=unicode, location='json')
-        self.reqparse.add_argument('width', type=int, default=1, location='json')     
+        self.reqparse.add_argument("content", type=unicode, location="json")
+        self.reqparse.add_argument("width", type=int, default=1, location="json")     
+        self.reqparse.add_argument("color", type=str, location="json")       
         super(NoteAPI, self).__init__()
 
     def get(self, id):

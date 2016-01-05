@@ -5,7 +5,7 @@
 </div>
 
 <div class="row">
-    <div ng-repeat="item in items" class="note-item col-md-{{item.note.width}}">
+    <div ng-repeat="item in items" class="note-item col-md-{{item.note.width}}" ng-style="{'background-color': item.note.color}">
         <div class="btn-group btn-group-sm" role="group" ng-show="item.status.viewMode">
             <button type="button" class="btn btn-default" ng-click="item.status.viewMode = false"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
             <button type="button" class="btn btn-default" ng-click="noteOperations.deleteNote(item.note.id, $index)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
@@ -14,8 +14,21 @@
             <button type="button" class="btn btn-default" ng-click="item.status.preview = true" ng-disabled="item.status.preview"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
             <button type="button" class="btn btn-default" ng-click="item.status.preview = false" ng-disabled="!item.status.preview"><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></button>
             <button type="button" class="btn btn-default" ng-click="noteOperations.updateNote(item.note.id, $index);"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+        	<div class="btn-group" role="group">
+	        	<div class="dropdown">
+				  <button class="btn btn-default btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+				    Color
+				    <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu">
+				    <li ng-repeat="color in colors">
+				    	<a ng-click="item.note.color = color"><div class="color-picker-item" ng-style="{'background-color': color}"></div><div class="color-picker-name">{{color}}</div></a>
+				    </li>
+				  </ul>
+				</div>
+			</div>
         </div>
-      	<select class="form-control input-xs pull-right" style="width:60px; height:30px;" ng-disabled="item.status.viewMode"  ng-options="width for width in [1,2,3,4,5,6,7,8,9,10,11,12]" ng-model="item.note.width"></select>
+      	<select class="form-control input-xs pull-right" style="width:60px; height:30px;" ng-disabled="item.status.viewMode"  ng-options="width for width in [2,3,4,5,6,7,8,9,10,11]" ng-model="item.note.width"></select>
         <div ng-if="!item.status.preview && !item.status.viewMode">
             <textarea elastic class="note-editor" ng-model="item.note.content"></textarea>
         </div>

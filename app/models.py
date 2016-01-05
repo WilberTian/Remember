@@ -57,10 +57,12 @@ class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.String(1000))
     width = db.Column(db.Integer)
+    color = db.Column(db.String(20))
     
-    def __init__(self, content, width):
+    def __init__(self, content, width, color):
         self.content = content
         self.width = width
+        self.color = color
 
     def __repr__(self):
         return '<Note %r>' % self.content
