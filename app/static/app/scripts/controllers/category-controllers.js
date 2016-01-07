@@ -1,4 +1,9 @@
-app.controller("CategoryInfoController", function($scope, ConfirmModalService, Category, categories){
+angular
+	.module("remember")
+	.controller("CategoryInfoController", CategoryInfoController);
+
+
+function CategoryInfoController($scope, confirmModalService, categoryDataService, categories){
     $scope.categories = categories["categories"];
     
     $scope.categoryOperations = {
@@ -20,8 +25,8 @@ app.controller("CategoryInfoController", function($scope, ConfirmModalService, C
                 bodyText: "Are you sure you want to delete " + $scope.categories[index].name + "?"
             };
 
-            ConfirmModalService.showModal({}, modalOptions).then(function () {
-            	Category.delete({id: id}).$promise.then(
+            confirmModalService.showModal({}, modalOptions).then(function () {
+            	categoryDataService.delete({id: id}).$promise.then(
                     function(response){
                         $scope.categories.splice(index, 1);
                     },
@@ -40,7 +45,7 @@ app.controller("CategoryInfoController", function($scope, ConfirmModalService, C
             if(category.id == -1){
                 // create a new category
                 delete category["id"];
-                Category.save(category).$promise.then(
+                categoryDataService.save(category).$promise.then(
                     function(response){
                         console.log(response);
                         $scope.categories[index] = response["category"]
@@ -52,7 +57,7 @@ app.controller("CategoryInfoController", function($scope, ConfirmModalService, C
             }
             else{
                 // update the category
-                Category.update({ id: category.id }, category).$promise.then(
+            	categoryDataService.update({ id: category.id }, category).$promise.then(
                     function(response){
                         console.log(response);
 
@@ -73,5 +78,5 @@ app.controller("CategoryInfoController", function($scope, ConfirmModalService, C
     };
 
    
-});
+}
 

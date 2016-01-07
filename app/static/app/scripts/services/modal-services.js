@@ -1,6 +1,6 @@
 var modalServices = angular.module("remember.modalServices", ["ui.bootstrap"]);
 
-modalServices.service("ConfirmModalService", function ($uibModal) {
+modalServices.service("confirmModalService", function ($uibModal) {
     var modalDefaults = {
         backdrop: true,
         keyboard: true,

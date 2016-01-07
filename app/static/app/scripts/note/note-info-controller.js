@@ -1,4 +1,10 @@
-app.controller("NoteInfoController", function($scope, Note, notes, ConfirmModalService){
+angular
+	.module("remember.note")
+	.controller("NoteInfoController", NoteInfoController);
+
+NoteInfoController.$inject = ["$scope", "noteDataService", "notes", "confirmModalService"];
+
+function NoteInfoController($scope, noteDataService, notes, confirmModalService){
     $scope.items = _.map(notes["notes"], function(note){
         var item = {};
         item.note = note;
@@ -46,8 +52,8 @@ app.controller("NoteInfoController", function($scope, Note, notes, ConfirmModalS
                 bodyText: "Are you sure you want to delete this note?"
             };
 
-            ConfirmModalService.showModal({}, modalOptions).then(function () {
-                Note.delete({id: id}).$promise.then(
+            confirmModalService.showModal({}, modalOptions).then(function () {
+            	noteDataService.delete({id: id}).$promise.then(
                     function(response){
                         $scope.items.splice(index, 1);
                     },
@@ -65,7 +71,7 @@ app.controller("NoteInfoController", function($scope, Note, notes, ConfirmModalS
             if(id == -1){
                 // create a new note
                 delete note["id"]
-                Note.save(note).$promise.then(
+                noteDataService.save(note).$promise.then(
                     function(response){
                         $scope.items[index].status.viewMode = true;
                         $scope.items[index].note = response["note"];
@@ -77,7 +83,7 @@ app.controller("NoteInfoController", function($scope, Note, notes, ConfirmModalS
             }
             else{
                 // update the note
-                Note.update({ id: id }, note).$promise.then(
+            	noteDataService.update({ id: id }, note).$promise.then(
                     function(response){
                         $scope.items[index].status.viewMode = true;
                     },
@@ -92,6 +98,6 @@ app.controller("NoteInfoController", function($scope, Note, notes, ConfirmModalS
     };
 
     
-});
+}
 
 

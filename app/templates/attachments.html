@@ -59,7 +59,7 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                <tr ng-repeat="attachment in attachments | attachmentName:nameKey | attachmentType:typeKey | attachmentTags:tagKey">
+                <tr ng-repeat="attachment in attachments | attachmentName:nameKey | attachmentType:typeKey | attachmentTag:tagKey">
                     <td>
                         <a href="/uploads/{{attachment.identity}}" target="_blank">{{attachment.name}}</a>
                     </td>

@@ -30,10 +30,13 @@ var mdEditorOptions = {
             }
         }   
     }
-}
+};
 
-
-app.controller("TastListController", function($scope, tasks, categories, tags){
+angular
+	.module("remember")
+	.controller("TastListController", TastListController);
+			
+function TastListController($scope, tasks, categories, tags) {
     $scope.tasks = tasks["tasks"];
     $scope.categories = categories["categories"];
     $scope.tags = tags["tags"];
@@ -46,9 +49,13 @@ app.controller("TastListController", function($scope, tasks, categories, tags){
     
     $scope.taskStatus = ["All", "Complete", "Incomplete"];
     $scope.selectedStatus = "Incomplete";
-});
+}
 
-app.controller("CreateTaskController", function($scope, $location, Task, categories, tags){
+angular
+	.module("remember")
+	.controller("CreateTaskController", CreateTaskController);
+
+function CreateTaskController($scope, $location, taskDataService, categories, tags){
     $scope.mdEditorOptions = mdEditorOptions;
     
     $scope.categoryInfo = {
@@ -77,7 +84,7 @@ app.controller("CreateTaskController", function($scope, $location, Task, categor
         $scope.task.tags = $scope.tagInfo.selection;
         $scope.task.dimension = $scope.task.dimension.id;
         
-        Task.save($scope.task).$promise.then(
+        taskDataService.save($scope.task).$promise.then(
             function(response){
                 $location.path("/view/" + response["task"].id);
             },
@@ -91,9 +98,13 @@ app.controller("CreateTaskController", function($scope, $location, Task, categor
         $location.path("/");
     };
     
-});
+}
 
-app.controller("EditTaskController", function($scope, $location, Task, task, categories, tags){
+angular
+	.module("remember")
+	.controller("EditTaskController", EditTaskController);
+
+function EditTaskController($scope, $location, taskDataService, task, categories, tags){
     $scope.mdEditorOptions = mdEditorOptions;
     
     $scope.task = task["task"];
@@ -137,7 +148,7 @@ app.controller("EditTaskController", function($scope, $location, Task, task, cat
         $scope.task.tags = $scope.tagInfo.selection;
         $scope.task.dimension = $scope.task.dimension.id;
 
-        Task.update({ id: $scope.task.id }, $scope.task).$promise.then(
+        taskDataService.update({ id: $scope.task.id }, $scope.task).$promise.then(
             function(response){
                 $location.path("/view/" + response["task"].id);
             },
@@ -151,9 +162,15 @@ app.controller("EditTaskController", function($scope, $location, Task, task, cat
         $location.path("/");
     };
     
-});
+}
 
-app.controller("ViewTaskController", function($scope, $location, task, Task, ConfirmModalService){
+angular
+	.module("remember")
+	.controller("ViewTaskController", ViewTaskController);
+
+ViewTaskController.$inject = ["$scope", "$location", "task", "taskDataService", "confirmModalService"];
+
+function ViewTaskController($scope, $location, task, taskDataService, confirmModalService){
     $scope.task = task["task"];
     
     $scope.editTask = function(){
@@ -169,8 +186,8 @@ app.controller("ViewTaskController", function($scope, $location, task, Task, Con
             bodyText: "Are you sure you want to delete " + $scope.task.name + "?"
         };
         
-        ConfirmModalService.showModal({}, modalOptions).then(function () {
-            Task.delete({id: $scope.task.id}).$promise.then(
+        confirmModalService.showModal({}, modalOptions).then(function () {
+        	taskDataService.delete({id: $scope.task.id}).$promise.then(
                 function(response){
                     $location.path("/");
                 },
@@ -179,8 +196,8 @@ app.controller("ViewTaskController", function($scope, $location, task, Task, Con
                 }
             );
         }, function(){
-            console.log('Modal dismissed at: ' + new Date());
+            console.log("Modal dismissed at: " + new Date());
         });
     };
-});
+}
 

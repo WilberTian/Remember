@@ -1,4 +1,8 @@
-app.controller("TagInfoController", function($scope, ConfirmModalService, Tag, tags){
+angular
+	.module("remember")
+	.controller("TagInfoController", TagInfoController);
+
+function TagInfoController($scope, confirmModalService, tagDataService, tags){
     $scope.tags = tags["tags"];
     
     $scope.tagOperations = {
@@ -20,8 +24,8 @@ app.controller("TagInfoController", function($scope, ConfirmModalService, Tag, t
                 bodyText: "Are you sure you want to delete " + $scope.tags[index].name + "?"
             };
 
-            ConfirmModalService.showModal({}, modalOptions).then(function () {
-            	Tag.delete({id: id}).$promise.then(
+            confirmModalService.showModal({}, modalOptions).then(function () {
+            	tagDataService.delete({id: id}).$promise.then(
                     function(response){
                         $scope.tags.splice(index, 1);
                     },
@@ -40,7 +44,7 @@ app.controller("TagInfoController", function($scope, ConfirmModalService, Tag, t
             if(tag.id == -1){
                 // create a new tag
                 delete tag["id"];
-                Tag.save(tag).$promise.then(
+                tagDataService.save(tag).$promise.then(
                     function(response){
                         console.log(response);
                         $scope.tags[index] = response["tag"];
@@ -52,7 +56,7 @@ app.controller("TagInfoController", function($scope, ConfirmModalService, Tag, t
             }
             else{
                 // update the tag
-                Tag.update({ id: tag.id }, tag).$promise.then(
+            	tagDataService.update({ id: tag.id }, tag).$promise.then(
                     function(response){
                         console.log(response);
 
@@ -73,6 +77,6 @@ app.controller("TagInfoController", function($scope, ConfirmModalService, Tag, t
     };
 
     
-});
+}
 
 

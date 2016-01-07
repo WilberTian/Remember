@@ -1,4 +1,9 @@
-app.controller("AttachmentController", function($scope, Attachment, AttachmentUploader, attachments, tags, $uibModal, $log, ConfirmModalService){
+angular
+	.module("remember")
+	.controller("AttachmentController", AttachmentController);
+
+
+function AttachmentController($scope, attachmentDataService, attachmentUploader, attachments, tags, $uibModal, $log, confirmModalService){
     $scope.attachments = attachments["attachments"];
     $scope.tags = tags["tags"];
     $scope.fileObjs = [];
@@ -37,7 +42,7 @@ app.controller("AttachmentController", function($scope, Attachment, AttachmentUp
     $scope.attachmentOperations = {
         "createAttachment": function(index){
             $scope.fileObjs[index].status = "loading";
-            AttachmentUploader($scope.fileObjs[index]).
+            attachmentUploader($scope.fileObjs[index]).
                 success(function(data){
                     $scope.attachments.push(data["attachment"]);
                     $scope.fileObjs[index].status = "success";
@@ -55,8 +60,8 @@ app.controller("AttachmentController", function($scope, Attachment, AttachmentUp
                 bodyText: "Are you sure you want to delete " + $scope.attachments[index].name +"?"
             };
 
-            ConfirmModalService.showModal({}, modalOptions).then(function () {
-                Attachment.delete({id: id}).$promise.then(
+            confirmModalService.showModal({}, modalOptions).then(function () {
+            	attachmentDataService.delete({id: id}).$promise.then(
                     function(response){
                         $scope.attachments.splice(index, 1);
                     },
@@ -86,7 +91,7 @@ app.controller("AttachmentController", function($scope, Attachment, AttachmentUp
             });
     
             editAttachmentModalInstance.result.then(function (attachment) {
-                Attachment.update({ id: attachment.id }, attachment).$promise.then(
+            	attachmentDataService.update({ id: attachment.id }, attachment).$promise.then(
                     function(response){
                         console.log(response);
                         $scope.attachments[index] = response["attachment"];
@@ -107,10 +112,14 @@ app.controller("AttachmentController", function($scope, Attachment, AttachmentUp
     };
 
     
-});
+}
 
-    
-app.controller("EditAttachmentModalController", function ($scope, $uibModalInstance, attachment, tags) {
+angular
+	.module("remember")
+	.controller("EditAttachmentModalController", EditAttachmentModalController);
+   
+
+function EditAttachmentModalController($scope, $uibModalInstance, attachment, tags) {
     $scope.attachment = _.clone(attachment);
 
     var tagInfo = {
@@ -137,4 +146,4 @@ app.controller("EditAttachmentModalController", function ($scope, $uibModalInsta
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
-});    
+} 

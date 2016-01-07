@@ -1,14 +1,14 @@
 var categoryServices = angular.module("remember.categoryServices", ["ngResource"]);
 
-categoryServices.factory("Category", function($resource){
+categoryServices.factory("categoryDataService", function($resource){
     return $resource("/remember/api/v1.0/categories/:id", {id: "@id"}, { update: { method: "PUT" }});
 });     
 
-categoryServices.factory("CategoryListLoader", function(Category, $q){
+categoryServices.factory("categoryListLoader", function(categoryDataService, $q){
     return function(){
         var delay = $q.defer();
         
-        Category.get(function(categories){
+        categoryDataService.get(function(categories){
             delay.resolve(categories);
         }, function(){
             delay.reject("Unable to fetch categories");

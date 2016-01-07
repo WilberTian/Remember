@@ -62,21 +62,69 @@
         <script src="app/lib/fullscreen.js"></script>
         <script src="app/lib/ui-codemirror.min.js"></script>
         
+        <!-- app scripts -->
+        <script src="app/scripts/app-module.js"></script>
+        <script src="app/scripts/app-config.js"></script>
+        <script src="app/scripts/constants.js"></script>
         
-        <script src="app/scripts/app.js"></script>
-        <script src="app/scripts/controllers/taskControllers.js"></script>
-        <script src="app/scripts/services/taskServices.js"></script>
-        <script src="app/scripts/controllers/categoryControllers.js"></script>
-        <script src="app/scripts/controllers/tagControllers.js"></script>
-        <script src="app/scripts/controllers/noteControllers.js"></script>
-        <script src="app/scripts/controllers/attachmentControllers.js"></script>
-        <script src="app/scripts/services/categoryServices.js"></script>
-        <script src="app/scripts/services/tagServices.js"></script>
-        <script src="app/scripts/services/noteServices.js"></script>
-        <script src="app/scripts/services/modalServices.js"></script>
-        <script src="app/scripts/services/attachmentServices.js"></script>
+        <!-- task scripts -->
+        <script src="app/scripts/task/task-module.js"></script>
+        <script src="app/scripts/task/controllers/task-list-controller.js"></script>
+        <script src="app/scripts/task/controllers/task-create-controller.js"></script>
+        <script src="app/scripts/task/controllers/task-edit-controller.js"></script>
+        <script src="app/scripts/task/controllers/task-view-controller.js"></script>
+        
+        <script src="app/scripts/task/services/task-data-service.js"></script>
+        <script src="app/scripts/task/services/task-loader-service.js"></script>
+        <script src="app/scripts/task/services/task-list-loader-service.js"></script>
+        
+        <script src="app/scripts/task/filters/task-tag-filter.js"></script>
+        <script src="app/scripts/task/filters/task-category-filter.js"></script>
+        <script src="app/scripts/task/filters/task-status-filter.js"></script>
+        
+        
+        <!-- category scripts -->
+        <script src="app/scripts/category/category-module.js"></script>
+        <script src="app/scripts/category/category-info-controller.js"></script>
+        
+        <script src="app/scripts/category/category-data-service.js"></script>
+        <script src="app/scripts/category/category-list-loader-service.js"></script>
+        
+        
+        <!-- tag scripts -->
+        <script src="app/scripts/tag/tag-module.js"></script>
+        <script src="app/scripts/tag/tag-info-controller.js"></script>
+
+	 	<script src="app/scripts/tag/tag-data-service.js"></script>
+        <script src="app/scripts/tag/tag-list-loader-service.js"></script>
+        
+        <!-- note scripts -->
+        <script src="app/scripts/note/note-module.js"></script>
+        <script src="app/scripts/note/note-info-controller.js"></script>
+
+	 	<script src="app/scripts/note/note-data-service.js"></script>
+        <script src="app/scripts/note/note-list-loader-service.js"></script>
+
+		<!-- attachment scripts -->
+		<script src="app/scripts/attachment/attachment-module.js"></script>
+		<script src="app/scripts/attachment/attachment-controller.js"></script>
+        <script src="app/scripts/attachment/attachment-edit-modal-controller.js"></script>
+        
+        <script src="app/scripts/attachment/services/attachment-data-service.js"></script>
+        <script src="app/scripts/attachment/services/attachment-list-loader-service.js"></script>
+        <script src="app/scripts/attachment/services/attachment-uploader-service.js"></script>
+        
+        <script src="app/scripts/attachment/filters/attachment-tag-filter.js"></script>
+        <script src="app/scripts/attachment/filters/attachment-name-filter.js"></script>
+        <script src="app/scripts/attachment/filters/attachment-type-filter.js"></script>
+
+		<!-- common scripts -->
+        <script src="app/scripts/common/common-module.js"></script>
+        <script src="app/scripts/common/services/confirm-modal-service.js"></script>
+        
+        
+        
         <script src="app/scripts/directives/directives.js"></script>
-        <script src="app/scripts/filters/filters.js"></script>
     </body>
 </html>
 

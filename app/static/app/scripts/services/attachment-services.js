@@ -1,14 +1,14 @@
 var attachmentServices = angular.module("remember.attachmentServices", ["ngResource"]);
 
-attachmentServices.factory("Attachment", function($resource){
+attachmentServices.factory("attachmentDataService", function($resource){
     return $resource("/remember/api/v1.0/attachments/:id", {id: "@id"}, { update: { method: "PUT" }});
 });     
 
-attachmentServices.factory("AttachmentListLoader", function(Attachment, $q){
+attachmentServices.factory("attachmentListLoader", function(attachmentDataService, $q){
     return function(){
         var delay = $q.defer();
         
-        Attachment.get(function(attachments){
+        attachmentDataService.get(function(attachments){
             delay.resolve(attachments);
         }, function(){
             delay.reject("Unable to fetch attachments");
@@ -18,7 +18,7 @@ attachmentServices.factory("AttachmentListLoader", function(Attachment, $q){
     }
 });    
 
-attachmentServices.factory('AttachmentUploader', function ($http) {
+attachmentServices.factory('attachmentUploader', function ($http) {
     return function(attachment){
         var fd = new FormData();
         fd.append("file", attachment.file);

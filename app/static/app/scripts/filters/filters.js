@@ -39,6 +39,8 @@ filters.filter("attachmentTags", function(){
 	}
 });
 
+
+/*
 filters.filter("taskCategory", function(){
 	return function(tasks, category){
 		if(!category || category.trim() == ''){
@@ -83,3 +85,5 @@ filters.filter("taskStatus", function(){
 		});
 	}
 });
+
+*/
