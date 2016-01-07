@@ -24,7 +24,8 @@ function NoteInfoController($scope, noteDataService, notes, confirmModalService)
                 "note": {
                     "id": -1,
                     "content": "Not set",
-                    "width": 2
+                    "width": 2,
+                    "color": "#bfeac7"
                 },
                 "status": {
                     "viewMode": false,
