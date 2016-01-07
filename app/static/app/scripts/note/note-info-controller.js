@@ -16,16 +16,7 @@ function NoteInfoController($scope, noteDataService, notes, confirmModalService)
         return item;
     });
     
-    $scope.colors = ["#a4bdfc",
-                     "#46d6db",
-                     "#7ae7bf",
-                     "#51b749",
-                     "#fbd75b",
-                     "#ffb878",
-                     "#ff887c",
-                     "#dbadff",
-                     "#e1e1e1",
-                     "#bfeac7"];
+    $scope.colors = noteColors;
 
     $scope.noteOperations = {
         "createNote": function(){
