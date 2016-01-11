@@ -5,7 +5,7 @@ var dimensions = [
 	{"id": 4, "name": "Not Important and not Urgent"}
 ];
 
-var taskStatus = ["All", "Complete", "Incomplete"];
+var taskStatusArray = ["All", "Complete", "Incomplete"];
 
 var noteColors = ["#a4bdfc",
 		          "#46d6db",
