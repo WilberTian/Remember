@@ -13,7 +13,13 @@ function AttachmentController($scope, attachmentDataService, attachmentUploader,
     }
     $scope.clearFileObjs = function(){
         $scope.fileObjs = [];
-    }
+    };
+    
+    $scope.clearFilter = function(){
+    	$scope.nameKey = "";
+    	$scope.typeKey = "";
+    	$scope.tagKey = "";
+    };
 
     //listen for the file selected event
     $scope.$on("fileSelected", function (event, args) {

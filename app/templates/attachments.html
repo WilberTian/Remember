@@ -45,6 +45,7 @@
 		    <input type="text" ng-model="nameKey" class="form-control" placeholder="Attachment Name"/>
 		    <input type="text" ng-model="typeKey" class="form-control" placeholder="Attachment Type"/>
 		    <input type="text" ng-model="tagKey" class="form-control" placeholder="Attachment Tag"/>
+		    <button class="btn btn-primary" ng-click="clearFilter()" ng-disabled="nameKey == null && typeKey == null && tagKey == null">Clear Filter</button>
 		  </div>
 		</form>
     </div>
