@@ -18,7 +18,7 @@ function TastListController($scope, tasks) {
     	$scope.selectedTag = null;
     };
     
-    $scope.taskStatus = ["All", "Complete", "Incomplete"];
+    $scope.taskStatus = taskStatus;
     $scope.selectedStatus = "Incomplete";
 }
 
