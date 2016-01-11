@@ -3,7 +3,7 @@
     <div class="form-inline">
     	<div class="fprm-group col-xs-6">
 	    	<label class="control-label">Category:</label>
-	        <select placeholder="select your beverage" class="form-control"  ng-options="category.name for category in categories track by category.id" ng-model="selectedCategory"></select>
+	        <select class="form-control"  ng-options="category.name for category in categories" ng-model="selectedCategory"></select>
 	    	<label class="control-label">Tag:</label>
 	        <select class="form-control"  ng-options="tag.name for tag in tags track by tag.id" ng-model="selectedTag"></select>
 	        <button class="btn btn-info" ng-click="clearFilter()" ng-disabled="selectedTag == null && selectedCategory == null">Clear Filter</button>

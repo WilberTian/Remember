@@ -10,13 +10,6 @@ function config($routeProvider){
             resolve: {
                 tasks: function(taskListLoader){
                     return taskListLoader();
-                },
-                categories: function(categoryListLoader){
-                    return categoryListLoader();
-                },
-                
-                tags: function(tagListLoader){
-                    return tagListLoader();
                 }
             },
             templateUrl: "list-task"
