@@ -388,7 +388,7 @@ class AttachmentListAPI(Resource):
 class AttachmentAPI(Resource):
     def __init__(self):
         self.reqparse = reqparse.RequestParser()
-        self.reqparse.add_argument('name', type=str, default="", location='json')
+        self.reqparse.add_argument('name', type=unicode, default="", location='json')
         self.reqparse.add_argument('tags', type=list, default=[], location='json')
         super(AttachmentAPI, self).__init__
         
