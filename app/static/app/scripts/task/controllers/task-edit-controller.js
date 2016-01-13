@@ -5,7 +5,12 @@ angular
 EditTaskController.$inject = ["$scope", "$location", "taskDataService", "task", "categories", "tags"];
 
 function EditTaskController($scope, $location, taskDataService, task, categories, tags){
-    $scope.mdEditorOptions = mdEditorOptions;
+    $scope.mdEditorconfig = {
+    	"mdEditorOptions": mdEditorOptions,
+    	"previewMode": false,
+    	"fullscreenMode": false,
+    	"refreshEditor": false
+    }
     
     $scope.task = task["task"];
 

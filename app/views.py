@@ -6,26 +6,26 @@ from app import app, api, auth, db
 
 @auth.get_password
 def get_password(username):
-    if username == 'miguel':
-        return 'python'
+    if username == "admin":
+        return "python"
     return None
 
 @auth.error_handler
 def unauthorized():
     # return 403 instead of 401 to prevent browsers from displaying the default
     # auth dialog
-    return make_response(jsonify({'message': 'Unauthorized access'}), 403)
+    return make_response(jsonify({"message": "Unauthorized access"}), 403)
 
 
 @app.errorhandler(404)
 def not_found_error(error):
-    return render_template('404.html'), 404
+    return render_template("404.html"), 404
 
 
 @app.errorhandler(500)
 def internal_error(error):
     db.session.rollback()
-    return render_template('500.html'), 500   
+    return render_template("500.html"), 500   
 
 @app.route("/")
 @app.route("/index")
@@ -75,12 +75,12 @@ def confirm_modal():
 @app.route("/swagger/swagger_config")
 def swagger_json():
     #return (swagger_config)
-    return app.send_static_file('swagger/remember_swagger.json')
+    return app.send_static_file("swagger/remember_swagger.json")
     
 @app.route("/swagger")
 def swagger():
-    return render_template('swagger.html')    
+    return render_template("swagger.html")    
     
-@app.route('/upload')
+@app.route("/upload")
 def upload():
-    return render_template('upload.html')
+    return render_template("upload.html")

@@ -61,3 +61,40 @@ directives.directive("fileUpload", function () {
         }
     };
 });
+
+directives.directive("editorFullscreen", function () {
+    return {
+        restrict: "A",
+        link: function (scope, element, attrs) {
+            scope.$watch(attrs.editorFullscreen, function(){
+
+            	if(scope.mdEditorconfig.fullscreenMode){
+            		$(element[0].firstChild).addClass("CodeMirror-fullscreen");
+            		scope.mdEditorconfig.refreshEditor = true;            		
+            	}
+            	else {
+            		$(element[0].firstChild).removeClass("CodeMirror-fullscreen");
+            	}
+            	
+            });
+        }
+    };
+});
+
+directives.directive("previewFullscreen", function () {
+    return {
+        restrict: "A",
+        link: function (scope, element, attrs) {
+            scope.$watch(attrs.previewFullscreen, function(){
+            	
+            	if(scope.mdEditorconfig.fullscreenMode){
+            		$(element[0]).addClass("CodeMirror-preview-fullscreen");
+            	}
+            	else {
+            		$(element[0]).removeClass("CodeMirror-preview-fullscreen");
+            	}
+            	
+            });
+        }
+    };
+});

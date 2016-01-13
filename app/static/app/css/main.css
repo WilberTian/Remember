@@ -173,6 +173,16 @@ textarea {
     background-color:#f8f8f8;
 }
 
+.CodeMirror-fullscreen {
+  position: fixed !important;
+  top: 0px !important;
+  left: 0px !important;
+  bottom: 0px !important;
+  right: 50% !important;
+  height: auto !important;
+  z-index: 10;
+}
+
 .CodeMirror-preview-fullscreen{
     position: fixed !important;
     top: 0px !important;
@@ -180,10 +190,24 @@ textarea {
     bottom: 0px !important;
     left: 50% !important;
     height: auto !important;
-    overflow: scroll !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    word-break: break-all;
     z-index:10;
     background: white;
     padding:10px;   
+}
+
+.exit-fullscreen-btn{
+	position: fixed !important;
+    top: 5px !important;
+    right: 20px !important;
+    opacity: 0.5;
+	z-index:20;
+}
+
+.exit-fullscreen-btn:hover{
+    opacity: 1;
 }
 
 .checkbox-inline, .radio-inline{
