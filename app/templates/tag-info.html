@@ -21,10 +21,10 @@
                     </td>
                     <td>
                         <form editable-form name="rowform" onbeforesave="tagOperations.updateTag($index)" oncancel="tagOperations.removeUnusedRow($index, tag)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == tag">
-                          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary btn-xs">
                             Update
                           </button>
-                          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default">
+                          <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default btn-xs">
                             Cancel
                           </button>
                         </form>
