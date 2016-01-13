@@ -25,21 +25,5 @@ var mdEditorOptions = {
     mode: "markdown", 
     keyMap: "sublime", 
     smartIndent: true, 
-    showCursorWhenSelecting: true,
-    extraKeys: {
-        "Esc": function(cm) {
-            if (cm.getOption("fullScreen")) {
-                cm.setOption("fullScreen", false);
-                $(".description-preview").parent().addClass("ng-hide");
-                $(".description-preview").removeClass("CodeMirror-preview-fullscreen");
-            }
-        },
-        "F11": function(cm) {
-            if (!cm.getOption("fullScreen")) {
-                cm.setOption("fullScreen", true);
-                $(".description-preview").parent().removeClass("ng-hide");
-                $(".description-preview").addClass("CodeMirror-preview-fullscreen");
-            }
-        }   
-    }
+    showCursorWhenSelecting: true
 };
