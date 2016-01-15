@@ -225,3 +225,10 @@ textarea {
     display: inline-block;
     padding-left: 10px;
 }
+
+.alert-container{
+	width: 280px;
+    position: fixed;
+    bottom: 0px;
+    right: 20px;
+}

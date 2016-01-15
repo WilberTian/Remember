@@ -71,9 +71,10 @@ function AttachmentController($scope, attachmentDataService, attachmentUploader,
             	attachmentDataService.delete({id: id}).$promise.then(
                     function(response){
                         $scope.attachments.splice(index, 1);
+                        alertService.addAlert("success", "Success: attachment deleted!", 3000);
                     },
                     function(){
-                        alert("fail to delete attachment");
+                        alertService.addAlert("danger", "Error: fail to delete attachment!", 3000);
                     }
                 );
             }, function(){
@@ -102,9 +103,10 @@ function AttachmentController($scope, attachmentDataService, attachmentUploader,
                     function(response){
                         console.log(response);
                         $scope.attachments[index] = response["attachment"];
+                        alertService.addAlert("success", "Success: attachment updated!", 3000);
                     },
                     function(){
-                        alert("fail to update attachment");
+                        alertService.addAlert("danger", "Error: fail to update attachment!", 3000);
                     }
                 );
             }, function () {

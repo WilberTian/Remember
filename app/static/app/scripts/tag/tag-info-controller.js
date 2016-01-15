@@ -2,9 +2,9 @@ angular
 	.module("remember.tag")
 	.controller("TagInfoController", TagInfoController);
 
-TagInfoController.$inject = ["$scope", "confirmModalService", "tagDataService", "tags"];
+TagInfoController.$inject = ["$scope", "confirmModalService", "tagDataService", "alertService", "tags"];
 
-function TagInfoController($scope, confirmModalService, tagDataService, tags){
+function TagInfoController($scope, confirmModalService, tagDataService, alertService, tags){
     $scope.tags = tags["tags"];
     
     $scope.tagOperations = {
@@ -30,9 +30,10 @@ function TagInfoController($scope, confirmModalService, tagDataService, tags){
             	tagDataService.delete({id: id}).$promise.then(
                     function(response){
                         $scope.tags.splice(index, 1);
+                        alertService.addAlert("success", "Success: tag deleted!", 3000);
                     },
                     function(){
-                        alert("fail to delete tag");
+                        alertService.addAlert("danger", "Error: fail to delete tag!", 3000);
                     }
                 );
             }, function(){
@@ -50,9 +51,10 @@ function TagInfoController($scope, confirmModalService, tagDataService, tags){
                     function(response){
                         console.log(response);
                         $scope.tags[index] = response["tag"];
+                        alertService.addAlert("success", "Success: tag created!", 3000);
                     },
                     function(){
-                        alert("fail to create tag");
+                    	alertService.addAlert("danger", "Error: fail to create tag!", 3000);
                     }
                 );
             }
@@ -60,11 +62,10 @@ function TagInfoController($scope, confirmModalService, tagDataService, tags){
                 // update the tag
             	tagDataService.update({ id: tag.id }, tag).$promise.then(
                     function(response){
-                        console.log(response);
-
+                    	alertService.addAlert("success", "Success: tag updated!", 3000);
                     },
                     function(){
-                        alert("fail to update tag");
+                        alertService.addAlert("danger", "Error: fail to update tag!", 3000);
                     }
                 );
                 

@@ -2,9 +2,9 @@ angular
 	.module("remember.task")
 	.controller("CreateTaskController", CreateTaskController);
 
-CreateTaskController.$inject = ["$scope", "$location", "taskDataService", "categories", "tags"];
+CreateTaskController.$inject = ["$scope", "$location", "taskDataService", "alertService", "categories", "tags"];
 
-function CreateTaskController($scope, $location, taskDataService, categories, tags){
+function CreateTaskController($scope, $location, taskDataService, alertService, categories, tags){
     $scope.mdEditorOptions = mdEditorOptions;
     
     $scope.categoryInfo = {
@@ -23,7 +23,7 @@ function CreateTaskController($scope, $location, taskDataService, categories, ta
             else {
                 this.selection.push(tag);
             }
-            console.log(this.selection);
+
         }
     };
     
@@ -36,9 +36,10 @@ function CreateTaskController($scope, $location, taskDataService, categories, ta
         taskDataService.save($scope.task).$promise.then(
             function(response){
                 $location.path("/view/" + response["task"].id);
+                alertService.addAlert("success", "Success: task created!", 3000);
             },
             function(){
-                alert("fail to update task");
+                alertService.addAlert("danger", "Error: fail to create task!", 3000);
             }
         );
     };

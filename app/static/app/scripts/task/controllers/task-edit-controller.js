@@ -56,9 +56,10 @@ function EditTaskController($scope, $location, taskDataService, task, categories
         taskDataService.update({ id: $scope.task.id }, $scope.task).$promise.then(
             function(response){
                 $location.path("/view/" + response["task"].id);
+                alertService.addAlert("success", "Success: task updated!", 3000);
             },
             function(){
-                alert("fail to update task");
+                alertService.addAlert("danger", "Error: fail to update task!", 3000);
             }
         );
     };

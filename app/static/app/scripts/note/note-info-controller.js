@@ -48,9 +48,10 @@ function NoteInfoController($scope, noteDataService, notes, confirmModalService)
             	noteDataService.delete({id: id}).$promise.then(
                     function(response){
                         $scope.items.splice(index, 1);
+                        alertService.addAlert("success", "Success: note deleted!", 3000);
                     },
                     function(){
-                        alert("fail to delete note");
+                        alertService.addAlert("danger", "Error: fail to delete note!", 3000);
                     }
                 );
             }, function(){
@@ -67,9 +68,10 @@ function NoteInfoController($scope, noteDataService, notes, confirmModalService)
                     function(response){
                         $scope.items[index].status.viewMode = true;
                         $scope.items[index].note = response["note"];
+                        alertService.addAlert("success", "Success: note created!", 3000);
                     },
                     function(){
-                        alert("fail to create note");
+                        alertService.addAlert("danger", "Error: fail to create note!", 3000);
                     }
                 );
             }
@@ -78,9 +80,10 @@ function NoteInfoController($scope, noteDataService, notes, confirmModalService)
             	noteDataService.update({ id: id }, note).$promise.then(
                     function(response){
                         $scope.items[index].status.viewMode = true;
+                        alertService.addAlert("success", "Success: note updated!", 3000);
                     },
                     function(){
-                        alert("fail to update note");
+                        alertService.addAlert("danger", "Error: fail to update note!", 3000);
                     }
                 );
                 

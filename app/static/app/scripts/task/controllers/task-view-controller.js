@@ -24,9 +24,10 @@ function ViewTaskController($scope, $location, task, taskDataService, confirmMod
         	taskDataService.delete({id: $scope.task.id}).$promise.then(
                 function(response){
                     $location.path("/");
+                    alertService.addAlert("success", "Success: task deleted!", 3000);
                 },
                 function(){
-                    alert("fail to delete task");
+                    alertService.addAlert("danger", "Error: fail to delete task!", 3000);
                 }
             );
         }, function(){
