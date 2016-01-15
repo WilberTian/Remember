@@ -5,8 +5,13 @@ angular
 CreateTaskController.$inject = ["$scope", "$location", "taskDataService", "alertService", "categories", "tags"];
 
 function CreateTaskController($scope, $location, taskDataService, alertService, categories, tags){
-    $scope.mdEditorOptions = mdEditorOptions;
-    
+	$scope.mdEditorconfig = {
+    	"mdEditorOptions": mdEditorOptions,
+    	"previewMode": false,
+    	"fullscreenMode": false,
+    	"refreshEditor": false
+    }
+
     $scope.categoryInfo = {
             "categories": categories["categories"], 
     };
