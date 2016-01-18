@@ -62,7 +62,7 @@
                 </tr>
                 <tr ng-repeat="attachment in attachments | attachmentName:nameKey | attachmentType:typeKey | attachmentTag:tagKey">
                     <td>
-                        <a href="/uploads/{{attachment.identity}}" target="_blank">{{attachment.name}}</a>
+                        <a href="/remember/api/v1.0/attachments/{{attachment.id}}" target="_blank">{{attachment.name}}</a>
                     </td>
                     <td>{{attachment.type}}</td>
                     <td>{{attachment.identity}}</td>
