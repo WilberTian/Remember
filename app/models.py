@@ -34,7 +34,7 @@ class Task(db.Model):
     tags = db.relationship("Tag", secondary=tags_tasks, backref=db.backref("tasks", lazy="dynamic"))
     dimension = db.Column(db.Integer)
 
-    def __init__(self, name, description, category, done, tags, dimension):
+    def __init__(self, name, description, category, done, tags, dimension): # pylint: disable=too-many-arguments
         self.name = name
         self.description = description
         self.category = category

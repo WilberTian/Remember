@@ -28,6 +28,7 @@ def not_found_error(error):
     '''
     function to handle 404 error
     '''
+    print "404 error happened", error
     return render_template("404.html"), 404
 
 @app.errorhandler(500)
@@ -35,6 +36,7 @@ def internal_error(error):
     '''
     function to handle 500 error
     '''
+    print "500 error happened", error
     db.session.rollback()
     return render_template("500.html"), 500
 
