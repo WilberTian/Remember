@@ -1,7 +1,7 @@
 var directives = angular.module("remember.directives", []);
 
 directives.directive("markdown", function () {
-    var converter = new Showdown.converter();
+    var converter = new showdown.Converter();
     return {
         restrict: "A",
         link: function (scope, element, attrs) {
@@ -36,7 +36,7 @@ directives.directive("elastic", [
                 var resize = function() {
                     element[0].style.height = $scope.initialHeight;
                     element[0].style.height = "" + (element[0].scrollHeight + 10) +  "px";
-                    console.log("resize")
+
                 };
                 element.on("input change", resize);
 
