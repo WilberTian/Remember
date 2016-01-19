@@ -2,9 +2,9 @@ angular
 	.module("remember.task")
 	.controller("EditTaskController", EditTaskController);
 
-EditTaskController.$inject = ["$scope", "$location", "taskDataService", "task", "categories", "tags"];
+EditTaskController.$inject = ["$scope", "$location", "taskDataService", "alertService", "task", "categories", "tags"];
 
-function EditTaskController($scope, $location, taskDataService, task, categories, tags){
+function EditTaskController($scope, $location, taskDataService, alertService, task, categories, tags){
     $scope.mdEditorconfig = {
     	"mdEditorOptions": mdEditorOptions,
     	"previewMode": false,

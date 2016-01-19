@@ -2,9 +2,9 @@ angular
 	.module("remember.note")
 	.controller("NoteInfoController", NoteInfoController);
 
-NoteInfoController.$inject = ["$scope", "noteDataService", "notes", "confirmModalService"];
+NoteInfoController.$inject = ["$scope", "noteDataService", "alertService", "notes", "confirmModalService"];
 
-function NoteInfoController($scope, noteDataService, notes, confirmModalService){
+function NoteInfoController($scope, noteDataService, alertService, notes, confirmModalService){
     $scope.items = _.map(notes["notes"], function(note){
         var item = {};
         item.note = note;

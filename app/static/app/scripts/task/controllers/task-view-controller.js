@@ -2,9 +2,9 @@ angular
 	.module("remember.task")
 	.controller("ViewTaskController", ViewTaskController);
 
-ViewTaskController.$inject = ["$scope", "$location", "task", "taskDataService", "confirmModalService"];
+ViewTaskController.$inject = ["$scope", "$location", "alertService", "task", "taskDataService", "confirmModalService"];
 
-function ViewTaskController($scope, $location, task, taskDataService, confirmModalService){
+function ViewTaskController($scope, $location, alertService, task, taskDataService, confirmModalService){
     $scope.task = task["task"];
     
     $scope.editTask = function(){

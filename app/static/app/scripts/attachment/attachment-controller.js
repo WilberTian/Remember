@@ -2,9 +2,9 @@ angular
 	.module("remember.attachment")
 	.controller("AttachmentController", AttachmentController);
 
-AttachmentController.$inject = ["$scope", "attachmentDataService", "attachmentUploader", "attachments", "tags", "$uibModal", "$log", "confirmModalService"];
+AttachmentController.$inject = ["$scope", "attachmentDataService", "attachmentUploader", "attachments", "tags", "$uibModal", "$log", "confirmModalService", "alertService"];
 
-function AttachmentController($scope, attachmentDataService, attachmentUploader, attachments, tags, $uibModal, $log, confirmModalService){
+function AttachmentController($scope, attachmentDataService, attachmentUploader, attachments, tags, $uibModal, $log, confirmModalService, alertService){
     $scope.attachments = attachments["attachments"];
     $scope.tags = tags["tags"];
     $scope.fileObjs = [];

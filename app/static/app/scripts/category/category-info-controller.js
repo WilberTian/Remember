@@ -2,9 +2,9 @@ angular
 	.module("remember.category")
 	.controller("CategoryInfoController", CategoryInfoController);
 
-CategoryInfoController.$inject = ["$scope", "confirmModalService", "categoryDataService", "categories"];
+CategoryInfoController.$inject = ["$scope", "confirmModalService", "alertService", "categoryDataService", "categories"];
 
-function CategoryInfoController($scope, confirmModalService, categoryDataService, categories){
+function CategoryInfoController($scope, confirmModalService, alertService, categoryDataService, categories){
     $scope.categories = categories["categories"];
     
     $scope.categoryOperations = {
