@@ -73,6 +73,15 @@ TASK_FIELDS = {
     "dimension": fields.Integer
 }
 
+TASKLIST_ITEM_FIELDS = {
+    "id": fields.Integer,
+    "name": fields.String,
+    "category": fields.Nested(CATEGORY_FIELDS),
+    "done": fields.Boolean,
+    "tags": fields.List(fields.Nested(TAG_FIELDS)),
+    "dimension": fields.Integer
+}
+
 
 class TaskList(Resource):
     '''
@@ -101,7 +110,7 @@ class TaskList(Resource):
         method to get task list
         '''
         tasks = models.Task.query.all()
-        return {"tasks": [marshal(task, TASK_FIELDS) for task in tasks]}
+        return {"tasks": [marshal(task, TASKLIST_ITEM_FIELDS) for task in tasks]}
 
     def post(self):
         '''
