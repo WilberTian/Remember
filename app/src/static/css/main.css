@@ -54,6 +54,11 @@
 
 }
 
+.icon-background {
+    background: url(../images/remember-sprite.png);
+}
+
+
 
 /*
 task list page
@@ -148,13 +153,6 @@ textarea {
 
 .note-editor{
     width: 100%;
-}
-
-#select-file {
-    width: 135px;
-    height: 35px;
-    background: url(../../app/images/select-file.png);
-    margin-bottom: 10px;
 }
 
 #select-file input {
