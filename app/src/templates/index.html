@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="remember">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Remember</title>
+        <link rel="stylesheet" href="vendor/css/bootstrap.min.css"></link>
+        <link rel="stylesheet" href="css/main.css"></link>
+        <link rel="stylesheet" href="vendor/css/xeditable.css"></link>
+        <link rel="stylesheet" href="vendor/css/codemirror.css"></link>
+        <link rel="stylesheet" href="vendor/css/twilight.css"></link>
+        <link rel="icon" href="images/favicon.ico"></link>
+
+    </head>
+    <body>
+    	<div id="wrapper">
+	        <!-- Sidebar -->
+	        <div id="sidebar-wrapper">
+	            <ul class="sidebar-nav">
+	                <li>
+	                    <a href="#/"><img src="images/remember.png" alt="remember" height="40" width="40"/></a>
+	                </li>
+                    <li>
+	                    <a href="#/notes"><img src="images/notes.png" alt="notes" height="40" width="40"/></a>
+	                </li>
+	                <li>
+	                    <a href="#/attachments"><img src="images/attachments.png" alt="attachments" height="40" width="40"/></a>
+	                </li>
+	                <li>
+	                    <a href="#/category-info"><img src="images/categories.png" alt="categories" height="40" width="40"/></a>
+	                </li>
+                    <li>
+	                    <a href="#/tag-info"><img src="images/tags.png" alt="tags" height="40" width="40"/></a>
+	                </li>
+                    <li>
+	                    <a href=""><img src="images/summary.png" alt="summary" height="40" width="40"/></a>
+	                </li>
+	            </ul>
+	        </div>
+	
+	        <!-- Page Content -->
+	        <div id="page-content-wrapper">
+	            <div class="container-fluid">
+			        <div ng-view/>
+	            </div>
+	            <div class="alert-container">
+			      	<div ng-repeat="alert in alerts" role="alert" class="alert alert-{{alert.type}} alert-dismissible">
+			      		<button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="closeAlert($index)"><span aria-hidden="true">&times;</span></button>
+			      		<span ng-bind="alert.msg"></span>
+			      	</div>
+			    </div>
+	        </div>
+    	</div>
+    	
+    	<script src="vendor/scripts/angular.min.js"></script>
+        <script src="vendor/scripts/angular-resource.min.js"></script>
+        <script src="vendor/scripts/angular-route.min.js"></script>
+        <script src="vendor/scripts/jquery.min.js"></script>
+        <script src="vendor/scripts/bootstrap.min.js"></script>
+        <script src="vendor/scripts/showdown.min.js"></script>
+        <script src="vendor/scripts/xeditable.min.js"></script>
+        <script src="vendor/scripts/ui-bootstrap-tpls.min.js"></script>
+        <script src="vendor/scripts/underscore-min.js"></script>
+        
+        <script src="vendor/scripts/codemirror.js"></script>
+        <script src="vendor/scripts/markdown.js"></script>
+        <script src="vendor/scripts/sublime.js"></script>
+        <script src="vendor/scripts/ui-codemirror.min.js"></script>
+        
+        <!-- app scripts -->
+        <script src="scripts/app-module.js"></script>
+        <script src="scripts/app-config.js"></script>
+        <script src="scripts/constants.js"></script>
+        
+        <!-- task scripts -->
+        <script src="scripts/task/task-module.js"></script>
+        <script src="scripts/task/controllers/task-list-controller.js"></script>
+        <script src="scripts/task/controllers/task-create-controller.js"></script>
+        <script src="scripts/task/controllers/task-edit-controller.js"></script>
+        <script src="scripts/task/controllers/task-view-controller.js"></script>
+        
+        <script src="scripts/task/services/task-data-service.js"></script>
+        <script src="scripts/task/services/task-loader-service.js"></script>
+        <script src="scripts/task/services/task-list-loader-service.js"></script>
+        
+        <script src="scripts/task/filters/task-tag-filter.js"></script>
+        <script src="scripts/task/filters/task-category-filter.js"></script>
+        <script src="scripts/task/filters/task-status-filter.js"></script>
+        
+        <!-- category scripts -->
+        <script src="scripts/category/category-module.js"></script>
+        <script src="scripts/category/category-info-controller.js"></script>
+        
+        <script src="scripts/category/category-data-service.js"></script>
+        <script src="scripts/category/category-list-loader-service.js"></script>
+        
+        <!-- tag scripts -->
+        <script src="scripts/tag/tag-module.js"></script>
+        <script src="scripts/tag/tag-info-controller.js"></script>
+
+	 	<script src="scripts/tag/tag-data-service.js"></script>
+        <script src="scripts/tag/tag-list-loader-service.js"></script>
+        
+        <!-- note scripts -->
+        <script src="scripts/note/note-module.js"></script>
+        <script src="scripts/note/note-info-controller.js"></script>
+
+	 	<script src="scripts/note/note-data-service.js"></script>
+        <script src="scripts/note/note-list-loader-service.js"></script>
+
+		<!-- attachment scripts -->
+		<script src="scripts/attachment/attachment-module.js"></script>
+		<script src="scripts/attachment/attachment-controller.js"></script>
+        <script src="scripts/attachment/attachment-edit-modal-controller.js"></script>
+        
+        <script src="scripts/attachment/services/attachment-data-service.js"></script>
+        <script src="scripts/attachment/services/attachment-list-loader-service.js"></script>
+        <script src="scripts/attachment/services/attachment-uploader-service.js"></script>
+        
+        <script src="scripts/attachment/filters/attachment-tag-filter.js"></script>
+        <script src="scripts/attachment/filters/attachment-name-filter.js"></script>
+        <script src="scripts/attachment/filters/attachment-type-filter.js"></script>
+
+		<!-- common scripts -->
+        <script src="scripts/common/common-module.js"></script>
+        <script src="scripts/common/services/confirm-modal-service.js"></script>
+        <script src="scripts/common/services/alert-service.js"></script>
+        <script src="scripts/common/directives/directives.js"></script>
+    </body>
+</html>
+
