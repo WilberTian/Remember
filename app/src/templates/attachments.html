@@ -39,7 +39,7 @@
     </div>
 
     <div class="row">
-       	<form class="form-inline col-xs-12" style="padding-bottom:5px;" ng-if="attachments.length > 0">
+       	<form class="form-inline col-xs-12" style="padding-bottom:5px;" ng-show="attachments.length > 0">
 		  <div class="form-group">
 		    <label class="label label-primary" style="font-size:14px; margin-right:4px;">Filters</label>
 		    <input type="text" ng-model="nameKey" class="form-control" placeholder="Attachment Name"/>
@@ -51,7 +51,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12">
-            <table ng-if="attachments.length > 0" class="table table-bordered table-condensed table-striped">
+            <table ng-show="attachments.length > 0" class="table table-bordered table-condensed table-striped">
                 <tr>
                     <th>Name</th>
                     <th>Type</th>
