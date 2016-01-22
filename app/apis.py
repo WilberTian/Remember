@@ -519,9 +519,8 @@ class AttachmentListAPI(Resource):
 
         #if file and allowed_file(file.filename.lower()):
         if file_obj:
-            filename = file_obj.filename
-            raw_name = os.path.splitext(filename)[0]
-            extension = os.path.splitext(filename)[1]
+            raw_name = os.path.splitext(file_obj.filename)[0]
+            extension = os.path.splitext(file_obj.filename)[1]
             identity = str(uuid.uuid4()) + extension
             file_obj.save(os.path.join(app.config["UPLOAD_FOLDER"], identity))
 
