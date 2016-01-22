@@ -519,7 +519,7 @@ class AttachmentListAPI(Resource):
 
         #if file and allowed_file(file.filename.lower()):
         if file_obj:
-            filename = werkzeug.secure_filename(file_obj.filename)
+            filename = file_obj.filename
             raw_name = os.path.splitext(filename)[0]
             extension = os.path.splitext(filename)[1]
             identity = str(uuid.uuid4()) + extension
