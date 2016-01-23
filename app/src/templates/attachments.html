@@ -46,7 +46,13 @@
 		    <input type="text" ng-model="typeKey" class="form-control" placeholder="Attachment Type"/>
 		    <input type="text" ng-model="tagKey" class="form-control" placeholder="Attachment Tag"/>
 		    <button class="btn btn-primary" ng-click="clearFilter()" ng-disabled="nameKey == null && typeKey == null && tagKey == null">Clear Filter</button>
+		  	<button class="btn btn-success" type="button">
+			  Found <span class="badge">{{filteredAttachment.length}}</span>
+		    </button>
 		  </div>
+		  <button class="btn btn-success pull-right" type="button">
+			  Total attachments <span class="badge">{{attachments.length}}</span>
+		  </button>
 		</form>
     </div>
     <div class="row">
@@ -60,7 +66,7 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-                <tr ng-repeat="attachment in attachments | attachmentName:nameKey | attachmentType:typeKey | attachmentTag:tagKey">
+                <tr ng-repeat="attachment in filteredAttachment = (attachments | attachmentName:nameKey | attachmentType:typeKey | attachmentTag:tagKey)">
                     <td>
                         <a href="/remember/api/v1.0/attachments/{{attachment.id}}" target="_blank">{{attachment.name}}</a>
                     </td>
