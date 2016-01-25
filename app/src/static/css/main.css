@@ -230,3 +230,31 @@ textarea {
     bottom: 0px;
     right: 20px;
 }
+
+.item-counter{
+	display: inline-block;
+	padding: 6px 12px;
+	color: #fff;
+    background-color: #6EC56E;
+    border-color: #6EC56E;
+	font-size: 14px;
+    font-weight: 400;
+	border-radius: 4px;
+	vertical-align: middle;
+	border: 1px solid transparent;
+}
+
+.item-counter-badge{
+	display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #6EC56E;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #fff;
+    border-radius: 10px;
+}

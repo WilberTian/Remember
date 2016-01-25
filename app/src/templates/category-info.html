@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <!-- Default panel contents -->
         <div class="panel-heading">
-                Category Info
+			Category Info
         </div>
         <!-- Table -->
         <table class="table table-bordered table-hover table-condensed">
@@ -44,6 +44,9 @@
         </table>
         <div class="panel-footer">
             <button class="btn btn-primary" ng-click="categoryOperations.createCategory()">Create</button>
+            <span class="item-counter pull-right">
+			     Category Count <span class="item-counter-badge">{{categories.length}}</span>
+		    </span>
         </div>
     </div>
 </div>    

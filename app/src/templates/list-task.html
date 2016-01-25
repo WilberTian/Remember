@@ -7,6 +7,9 @@
 	    	<label class="control-label">Tag:</label>
 	        <select class="form-control"  ng-options="tag.name for tag in tags track by tag.id" ng-model="selectedTag"></select>
 	        <button class="btn btn-info" ng-click="clearFilter()" ng-disabled="selectedTag == null && selectedCategory == null">Clear Filter</button>
+	        <span class="item-counter">
+				Task Count <span class="item-counter-badge">{{filteredTasks.length}}</span>
+			</span>
 	        <a class="btn btn-info" href="#/create"><span class="glyphicon glyphicon-plus"></span></a>
     	</div>
     	<div class="form-group col-xs-2">
@@ -32,7 +35,7 @@
                 <th>Category</th>
                 <th>Tags</th>
             </tr>
-            <tr ng-repeat="task in tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name | taskStatus:selectedStatus">
+            <tr ng-repeat="task in filteredTasks = (tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name | taskStatus:selectedStatus)">
                 <td>
                     <span class="dimension-mark" ng-class="{strike: task.dimension ==3 || task.dimension == 4 }">I</span>
                     <span class="dimension-mark" ng-class="{strike: task.dimension ==2 || task.dimension == 4 }">U</span>
@@ -47,7 +50,7 @@
     <div id="task-group-view" ng-show="taskView == 'group'">
         <div ng-repeat="dimension in dimensions" class=" col-xs-3">
             <div class="dimension-header">{{dimension.name}}</div>
-            <div ng-repeat="task in tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name | taskStatus:selectedStatus" ng-if="task.dimension == dimension.id" class="col-xs-12 task-list-item" ng-class="task.done?'task-complete':'task-incomplete'">
+            <div ng-repeat="task in filteredTasks = (tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name | taskStatus:selectedStatus)" ng-if="task.dimension == dimension.id" class="col-xs-12 task-list-item" ng-class="task.done?'task-complete':'task-incomplete'">
                 <div class="pull-right">
                     <span class="dimension-mark" ng-class="{strike: dimension.id ==3 || dimension.id == 4 }">I</span>
                     <span class="dimension-mark" ng-class="{strike: dimension.id ==2 || dimension.id == 4 }">U</span>

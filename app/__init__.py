@@ -9,7 +9,7 @@ from flask_httpauth import HTTPBasicAuth
 
 app = Flask(__name__, static_url_path="")   # pylint: disable=invalid-name
 app.config.from_object("config")
-app.debug = False
+app.debug = True
 auth = HTTPBasicAuth()  # pylint: disable=invalid-name
 
 # redefine jinja start/end string to avoid conflict with AngularJS

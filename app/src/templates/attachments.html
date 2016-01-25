@@ -46,13 +46,13 @@
 		    <input type="text" ng-model="typeKey" class="form-control" placeholder="Attachment Type"/>
 		    <input type="text" ng-model="tagKey" class="form-control" placeholder="Attachment Tag"/>
 		    <button class="btn btn-primary" ng-click="clearFilter()" ng-disabled="nameKey == null && typeKey == null && tagKey == null">Clear Filter</button>
-		  	<button class="btn btn-success" type="button">
-			  Found <span class="badge">{{filteredAttachment.length}}</span>
-		    </button>
+		    <span class="item-counter">
+				Filtered Count <span class="item-counter-badge">{{filteredAttachment.length}}</span>
+			</span>
 		  </div>
-		  <button class="btn btn-success pull-right" type="button">
-			  Total attachments <span class="badge">{{attachments.length}}</span>
-		  </button>
+		  <span class="item-counter pull-right">
+			  Total attachments <span class="item-counter-badge">{{attachments.length}}</span>
+		  </span>
 		</form>
     </div>
     <div class="row">
