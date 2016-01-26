@@ -1,15 +1,13 @@
-.note-item{
+.note-item {
   padding:10px;
   margin:10px;
   word-break: break-all;
 }
 
-.note-editor{
-  width: 100%;
-}
+.note-editor { width: 100%; }
 
-.color-picker-item{
-	width: 20px;
+.color-picker-item {
+  width: 20px;
   height: 20px;
   display: inline-block;
   vertical-align: bottom;

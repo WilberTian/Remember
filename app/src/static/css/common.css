@@ -1,10 +1,6 @@
-textarea {
-  resize: vertical;
-}
+textarea { resize: vertical; }
 
-.label{
-	margin-right: 2px;
-}
+.label { margin-right: 2px; }
 
 .strike {
   position: relative;
@@ -25,18 +21,16 @@ textarea {
   transform: skewY(30deg);
 }
 
-.checkbox-inline, .radio-inline{
-  margin-left: 10px;
-}
+.checkbox-inline, .radio-inline{ margin-left: 10px; }
 
-.alert-container{
+.alert-container {
   width: 280px;
   position: fixed;
   bottom: 0px;
   right: 20px;
 }
 
-.item-counter{
+.item-counter {
   display: inline-block;
   padding: 6px 12px;
   color: #fff;
@@ -49,7 +43,7 @@ textarea {
   border: 1px solid transparent;
 }
 
-.item-counter-badge{
+.item-counter-badge {
   display: inline-block;
   min-width: 10px;
   padding: 3px 7px;
