@@ -33,8 +33,9 @@ gulp.task("importVendorCSS", function(){
 });
 
 gulp.task("buildVendorCSS", function(){
-    gulp.src(config.vendorCSS.src)
+    gulp.src(config.vendorCSS.fromVendor)
     	.pipe(minifycss())
+    	.pipe(concat("lib.min.css"))
         .pipe(gulp.dest(config.vendorCSS.dest));
 });
     

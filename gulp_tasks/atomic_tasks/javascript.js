@@ -82,13 +82,14 @@ gulp.task("importVendorScript", function(){
 });
 
 gulp.task("buildVendorScript", function(){
-    gulp.src(config.vendorScript.src)
+    gulp.src(config.vendorScript.fromVendor)
         .pipe(uglify({
             mangle: false,
             compress: {
                 drop_console: true
             }
         }))
+        .pipe(concat("lib.min.js"))
         .pipe(gulp.dest(config.vendorScript.dest));
 });
 
