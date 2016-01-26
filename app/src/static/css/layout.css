@@ -1,0 +1,55 @@
+#sidebar-wrapper {
+  z-index: 8;
+  position: fixed;
+  left: 60px;
+  width: 0;
+  height: 100%;
+  margin-left: -60px;
+  overflow-y: auto;
+  background: #6C6D6E;
+}
+
+#page-content-wrapper {
+  width: 100%;
+  position: absolute;
+}
+
+#page-content-wrapper {
+  position: absolute;
+  margin-right: -60px;
+}
+
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 60px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-nav li a {
+  display: block;
+  padding: 10px;
+}
+
+.sidebar-nav li a:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+.icon-background {
+  background: url(../images/remember-sprite.png);
+}
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 60px;
+  }
+
+  #sidebar-wrapper {
+    width: 60px;
+  }
+  #page-content-wrapper {
+    position: relative;
+  }
+}

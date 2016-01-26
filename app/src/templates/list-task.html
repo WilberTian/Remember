@@ -1,67 +1,64 @@
-<div id="toolbar" class="row">
-    
-    <div class="form-inline">
-    	<div class="fprm-group col-xs-6">
-	    	<label class="control-label">Category:</label>
-	        <select class="form-control"  ng-options="category.name for category in categories" ng-model="selectedCategory"></select>
-	    	<label class="control-label">Tag:</label>
-	        <select class="form-control"  ng-options="tag.name for tag in tags track by tag.id" ng-model="selectedTag"></select>
-	        <button class="btn btn-info" ng-click="clearFilter()" ng-disabled="selectedTag == null && selectedCategory == null">Clear Filter</button>
-	        <span class="item-counter">
-				Task Count <span class="item-counter-badge">{{filteredTasks.length}}</span>
-			</span>
-	        <a class="btn btn-info" href="#/create"><span class="glyphicon glyphicon-plus"></span></a>
-    	</div>
-    	<div class="form-group col-xs-2">
-    		<label class="control-label">Status:</label>
-	        <select class="form-control"  ng-options="status for status in taskStatus" ng-model="selectedStatus"></select>
-    	</div>
-    	<div class="form-group col-xs-2">
-    		<div class="btn-group" role="group" >
-		        <button class="btn btn-info" ng-click="taskView = 'list'" ng-disabled="taskView == 'list'"><span class="glyphicon glyphicon-th-list"></span></button>
-		        <button class="btn btn-info" ng-click="taskView = 'group'" ng-disabled="taskView == 'group'"><span class="glyphicon glyphicon-th-large"></span></button>
-		    </div>
-    	</div>
-    </div>
-</div>
-
-<div id="task-container" ng-init="taskView = 'list'">
-
-    <div id="task-list-view" ng-show="taskView == 'list'" class="col-xs-6">
-        <table class="table table-bordered table-condensed table-striped">
-            <tr>
-                <th>Dimension</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Tags</th>
-            </tr>
-            <tr ng-repeat="task in filteredTasks = (tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name | taskStatus:selectedStatus)">
-                <td>
-                    <span class="dimension-mark" ng-class="{strike: task.dimension ==3 || task.dimension == 4 }">I</span>
-                    <span class="dimension-mark" ng-class="{strike: task.dimension ==2 || task.dimension == 4 }">U</span>
-                </td>
-                <td ng-class="task.done?'success':'danger'"><a href="/#/view/{{task.id}}">{{task.name}}</a></td>
-                <td><span class="label label-primary">{{task.category.name}}</span></td>
-                <td><span class="label label-info" ng-repeat="tag in task.tags">{{tag.name}}</span></td>
-            </tr>
-        </table>
-    </div>
-
-    <div id="task-group-view" ng-show="taskView == 'group'">
-        <div ng-repeat="dimension in dimensions" class=" col-xs-3">
-            <div class="dimension-header">{{dimension.name}}</div>
-            <div ng-repeat="task in filteredTasks = (tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name | taskStatus:selectedStatus)" ng-if="task.dimension == dimension.id" class="col-xs-12 task-list-item" ng-class="task.done?'task-complete':'task-incomplete'">
-                <div class="pull-right">
-                    <span class="dimension-mark" ng-class="{strike: dimension.id ==3 || dimension.id == 4 }">I</span>
-                    <span class="dimension-mark" ng-class="{strike: dimension.id ==2 || dimension.id == 4 }">U</span>
-                </div>
-                <h4><a href="/#/view/{{task.id}}">{{task.name}}</a></h4>
-                <span class="label label-primary">{{task.category.name}}</span><br/>
-                <span class="label label-info" ng-repeat="tag in task.tags">{{tag.name}}</span>
-            </div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <form class="navbar-form navbar-left" role="search">
+        <label class="control-label">Category:</label>
+        <select class="form-control"  ng-options="category.name for category in categories" ng-model="selectedCategory"></select>
+        <label class="control-label">Tag:</label>
+        <select class="form-control"  ng-options="tag.name for tag in tags track by tag.id" ng-model="selectedTag"></select>
+        <button class="btn btn-info" ng-click="clearFilter()" ng-disabled="selectedTag == null && selectedCategory == null">Clear Filter</button>
+        <span class="item-counter">
+        Task Count <span class="item-counter-badge">{{filteredTasks.length}}</span>
+        </span>
+        <a class="btn btn-info" href="#/create"><span class="glyphicon glyphicon-plus"></span></a>
+      </form>
+      <form class="navbar-form navbar-left">
+        <label class="control-label">Status:</label>
+        <select class="form-control"  ng-options="status for status in taskStatus" ng-model="selectedStatus"></select>
+      </form>
+      <form class="navbar-form navbar-right">
+        <div class="btn-group" role="group" >
+          <button class="btn btn-info" ng-click="taskView = 'list'" ng-disabled="taskView == 'list'"><span class="glyphicon glyphicon-th-list"></span></button>
+          <button class="btn btn-info" ng-click="taskView = 'group'" ng-disabled="taskView == 'group'"><span class="glyphicon glyphicon-th-large"></span></button>
         </div>
+      </form>
     </div>
-    
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row" ng-init="taskView = 'list'">
+    <div id="task-list-view" class="col-xs-6" ng-show="taskView == 'list'">
+      <table class="table table-bordered table-condensed table-striped">
+        <tr>
+          <th>Dimension</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>Tags</th>
+        </tr>
+        <tr ng-repeat="task in filteredTasks = (tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name | taskStatus:selectedStatus)">
+          <td>
+            <span class="dimension-mark" ng-class="{strike: task.dimension ==3 || task.dimension == 4 }">I</span>
+            <span class="dimension-mark" ng-class="{strike: task.dimension ==2 || task.dimension == 4 }">U</span>
+          </td>
+          <td ng-class="task.done?'success':'danger'"><a href="/#/view/{{task.id}}">{{task.name}}</a></td>
+          <td><span class="label label-primary">{{task.category.name}}</span></td>
+          <td><span class="label label-info" ng-repeat="tag in task.tags">{{tag.name}}</span></td>
+        </tr>
+      </table>
+    </div>
+    <div id="task-group-view" ng-show="taskView == 'group'">
+      <div class=" col-xs-3" ng-repeat="dimension in dimensions">
+        <div class="dimension-header">{{dimension.name}}</div>
+        <div class="col-xs-12 task-group-item" ng-repeat="task in filteredTasks = (tasks | taskCategory:selectedCategory.name | taskTag:selectedTag.name | taskStatus:selectedStatus)" ng-if="task.dimension == dimension.id" ng-class="task.done?'task-complete':'task-incomplete'">
+          <div class="pull-right">
+            <span class="dimension-mark" ng-class="{strike: dimension.id ==3 || dimension.id == 4 }">I</span>
+            <span class="dimension-mark" ng-class="{strike: dimension.id ==2 || dimension.id == 4 }">U</span>
+          </div>
+          <h4><a href="/#/view/{{task.id}}">{{task.name}}</a></h4>
+          <span class="label label-primary">{{task.category.name}}</span><br/>
+          <span class="label label-info" ng-repeat="tag in task.tags">{{tag.name}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-

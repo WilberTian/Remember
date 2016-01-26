@@ -1,15 +1,18 @@
-<div class="page-header" ng-class="task.done?'task-complete':'task-incomplete'">
-    <h4>{{task.name}}</h4>
-    <div class="btn-group pull-right">
+<div class="container-fluid">
+  <div class="page-header" ng-class="task.done?'task-complete':'task-incomplete'">
+    <div class="header-content">
+      <h4>{{task.name}}</h4>
+      <div class="btn-group pull-right">
         <button type="button" class="btn btn-default" ng-click="editTask()"><span class="glyphicon glyphicon-pencil"></span></button>
         <button type="button" class="btn btn-default" ng-click="deleteTask()"><span class="glyphicon glyphicon-remove"></span></button>
-    </div>
-    <div >
+      </div>
+      <div >
         <span class="dimension-mark" ng-class="{strike: task.dimension ==3 || task.dimension == 4 }">I</span>
         <span class="dimension-mark" ng-class="{strike: task.dimension ==2 || task.dimension == 4 }">U</span>
+      </div>
+      <span class="label label-primary">{{task.category.name}}</span>
+      <span class="label label-info" ng-repeat="tag in task.tags">{{tag.name}}</span>
     </div>
-    <span class="label label-primary">{{task.category.name}}</span>
-    <span class="label label-info" ng-repeat="tag in task.tags">{{tag.name}}</span>
+  </div>
+  <div id="task-description" markdown="task.description"></div>
 </div>
-
-<div id="task-description" markdown="task.description"></div>

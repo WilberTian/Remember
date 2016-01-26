@@ -1,0 +1,7 @@
+#select-file input {
+  width: 135px !important;
+  height: 35px !important;
+  opacity: 0 !important;
+}
+
+#select-file input:hover { cursor: pointer;}

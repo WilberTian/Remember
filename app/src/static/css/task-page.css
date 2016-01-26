@@ -1,0 +1,85 @@
+.task-group-item{
+  border: 1px solid #D0CCCC;
+  padding: 10px;
+  margin:2px;
+}
+
+.task-complete{
+  border-left: 5px solid #5cb85c;
+}
+
+.task-incomplete{
+  border-left: 5px solid red;
+}
+
+.header-content{
+  padding: 10px;
+}
+
+.dimension-header{
+  border-bottom: 6px solid #eee;
+  margin-bottom: 15px;
+  padding:5px;
+  font-weight: bold;
+  font-size: large;
+}
+
+.dimension-mark{
+  display: inline-block;
+  font-weight: bold;
+  width:20px;
+  height: 20px;
+  color: #fff;
+  background-color: #F1A257;
+  text-align: center;
+  border-radius: .25em;
+  white-space: nowrap;
+}
+
+#task-description, .description-preview{
+  padding:10px;
+  border-left: 3px solid #bbb;
+  line-height: 1.6;
+  font-family: sans-serif;
+  font-size: medium;
+  background-color:#f8f8f8;
+}
+
+.CodeMirror-fullscreen {
+  position: fixed !important;
+  top: 0px !important;
+  left: 0px !important;
+  bottom: 0px !important;
+  right: 50% !important;
+  height: auto !important;
+  z-index: 10;
+}
+
+.CodeMirror-preview-fullscreen{
+  position: fixed !important;
+  top: 0px !important;
+  right: 0px !important;
+  bottom: 0px !important;
+  left: 50% !important;
+  height: auto !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  word-break: break-all;
+  z-index:10;
+  background: white;
+  padding:10px;   
+}
+
+.exit-fullscreen-btn{
+  position: fixed !important;
+  top: 5px !important;
+  right: 20px !important;
+  opacity: 0.5;
+  z-index:20;
+}
+
+.exit-fullscreen-btn:hover{
+  opacity: 1;
+}
+
+

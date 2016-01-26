@@ -1,40 +1,39 @@
 <div class="modal-header">
-    <h3 class="modal-title">Update Attachment</h3>
+  <h3 class="modal-title">Update Attachment</h3>
 </div>
 <div class="modal-body">
-    <form class="form-horizontal" name="editAttachmentModal">
-        <div class="form-group">
-            <label class="col-xs-2 control-label">Name</label>
-            <div class="col-xs-9">
-                <input type="text" class="form-control" ng-model="attachment.name" required autofocus>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-xs-2 control-label">Type</label>
-            <div class="col-xs-9">
-                <input type="text" class="form-control" ng-model="attachment.type" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-xs-2 control-label">Identity</label>
-            <div class="col-xs-9">
-                <input type="text" class="form-control" ng-model="attachment.identity" disabled>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="tag" class="col-xs-2 control-label">Tags</label>
-            <div class="col-xs-9">
-                <label class="checkbox-inline" ng-repeat="tag in tagInfo.tags">
-                    <input type="checkbox" value="tag.id" ng-model="tag.checked" ng-checked="tagInfo.selectedTags.indexOf(tag.id) > -1" ng-click="tagInfo.toggleSelection(tag.id)"> {{tag.name}}
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-xs-offset-2 col-xs-9">
-                <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!editAttachmentModal.$dirty || !editAttachmentModal.$valid">Save</button>
-                <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
-            </div>
-        </div>
-    </form>
+  <form class="form-horizontal" name="editAttachmentModal">
+    <div class="form-group">
+      <label class="col-xs-2 control-label">Name</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control" ng-model="attachment.name" required autofocus>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-2 control-label">Type</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control" ng-model="attachment.type" disabled>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-xs-2 control-label">Identity</label>
+      <div class="col-xs-9">
+        <input type="text" class="form-control" ng-model="attachment.identity" disabled>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tag" class="col-xs-2 control-label">Tags</label>
+      <div class="col-xs-9">
+        <label class="checkbox-inline" ng-repeat="tag in tagInfo.tags">
+        <input type="checkbox" value="tag.id" ng-model="tag.checked" ng-checked="tagInfo.selectedTags.indexOf(tag.id) > -1" ng-click="tagInfo.toggleSelection(tag.id)"> {{tag.name}}
+        </label>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-xs-offset-2 col-xs-9">
+        <button type="button" class="btn btn-primary" ng-click="save()" ng-disabled="!editAttachmentModal.$dirty || !editAttachmentModal.$valid">Save</button>
+        <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+      </div>
+    </div>
+  </form>
 </div>
-

@@ -1,0 +1,61 @@
+textarea {
+  resize: vertical;
+}
+
+.strike {
+  position: relative;
+  display: inline-block;
+}
+
+.strike::before {
+  content: '';
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 40%;
+}
+
+.strike::before {
+  border: 2px solid #a94442;
+  -webkit-transform: skewY(30deg);
+  transform: skewY(30deg);
+}
+
+.checkbox-inline, .radio-inline{
+  margin-left: 10px;
+}
+
+.alert-container{
+  width: 280px;
+  position: fixed;
+  bottom: 0px;
+  right: 20px;
+}
+
+.item-counter{
+  display: inline-block;
+  padding: 6px 12px;
+  color: #fff;
+  background-color: #6ec56e;
+  border-color: #6ec56e;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 4px;
+  vertical-align: middle;
+  border: 1px solid transparent;
+}
+
+.item-counter-badge{
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: #6ec56e;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-color: #fff;
+  border-radius: 10px;
+}
