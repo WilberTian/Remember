@@ -2,6 +2,10 @@ textarea {
   resize: vertical;
 }
 
+.label{
+	margin-right: 2px;
+}
+
 .strike {
   position: relative;
   display: inline-block;
