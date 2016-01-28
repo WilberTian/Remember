@@ -1,13 +1,16 @@
-var dimensions = [
+var globalVar = {};
+globalVar.remember = {};
+
+globalVar.remember.dimensions = [
 	{"id": 1, "name": "Important and Urgent"},
 	{"id": 2, "name": "Important but not Urgent"},
 	{"id": 3, "name": "Not Important but Urgent"},
 	{"id": 4, "name": "Not Important and not Urgent"}
 ];
 
-var taskStatusArray = ["All", "Complete", "Incomplete"];
+globalVar.remember.taskStatusArray = ["All", "Complete", "Incomplete"];
 
-var noteColors = ["#a4bdfc",
+globalVar.remember.noteColors = ["#a4bdfc",
 		          "#46d6db",
 		          "#7ae7bf",
 		          "#51b749",
@@ -18,7 +21,7 @@ var noteColors = ["#a4bdfc",
 		          "#e1e1e1",
 		          "#bfeac7"];
 
-var mdEditorOptions = {
+globalVar.remember.mdEditorOptions = {
     lineNumbers: true, 
     theme:"twilight", 
     lineWrapping : true, 

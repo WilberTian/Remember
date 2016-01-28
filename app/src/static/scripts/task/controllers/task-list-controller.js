@@ -30,13 +30,13 @@ function TastListController($scope, tasks) {
     	});
     })(tasks["tasks"]);
     
-    $scope.dimensions = dimensions;
+    $scope.dimensions = globalVar.remember.dimensions;
     
     $scope.clearFilter = function(){
     	$scope.selectedCategory = null;
     	$scope.selectedTag = null;
     };
 
-    $scope.taskStatus = taskStatusArray;
+    $scope.taskStatus = globalVar.remember.taskStatusArray;
     $scope.selectedStatus = "Incomplete";
 }

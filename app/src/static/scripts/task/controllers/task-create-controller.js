@@ -6,7 +6,7 @@ CreateTaskController.$inject = ["$scope", "$location", "taskDataService", "alert
 
 function CreateTaskController($scope, $location, taskDataService, alertService, categories, tags){
 	$scope.mdEditorconfig = {
-    	"mdEditorOptions": mdEditorOptions,
+    	"mdEditorOptions": globalVar.remember.mdEditorOptions,
     	"previewMode": false,
     	"fullscreenMode": false,
     	"refreshEditor": false
@@ -32,7 +32,7 @@ function CreateTaskController($scope, $location, taskDataService, alertService, 
         }
     };
     
-    $scope.dimensions =dimensions;
+    $scope.dimensions =globalVar.remember.dimensions;
 
     $scope.createTask = function(){
         $scope.task.tags = $scope.tagInfo.selection;

@@ -6,7 +6,7 @@ EditTaskController.$inject = ["$scope", "$location", "taskDataService", "alertSe
 
 function EditTaskController($scope, $location, taskDataService, alertService, task, categories, tags){
     $scope.mdEditorconfig = {
-    	"mdEditorOptions": mdEditorOptions,
+    	"mdEditorOptions": globalVar.remember.mdEditorOptions,
     	"previewMode": false,
     	"fullscreenMode": false,
     	"refreshEditor": false
@@ -19,7 +19,7 @@ function EditTaskController($scope, $location, taskDataService, alertService, ta
             
     };
     
-    $scope.dimensions = dimensions;
+    $scope.dimensions = globalVar.remember.dimensions;
     
     $scope.task.dimension = $scope.dimensions[$scope.task.dimension-1];
 

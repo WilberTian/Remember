@@ -16,7 +16,7 @@ function NoteInfoController($scope, noteDataService, alertService, notes, confir
         return item;
     });
     
-    $scope.colors = noteColors;
+    $scope.colors = globalVar.remember.noteColors;
 
     $scope.noteOperations = {
         "createNote": function(){
