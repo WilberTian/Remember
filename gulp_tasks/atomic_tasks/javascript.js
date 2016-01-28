@@ -55,9 +55,11 @@ var config = {
             "./app/src/static/scripts/note/note-info-controller.js",
             "./app/src/static/scripts/note/note-data-service.js",
             "./app/src/static/scripts/note/note-list-loader-service.js",
+            "./app/src/static/scripts/note/note-elastic-directive.js",
             "./app/src/static/scripts/attachment/attachment-module.js",
             "./app/src/static/scripts/attachment/attachment-controller.js",
             "./app/src/static/scripts/attachment/attachment-edit-modal-controller.js",
+            "./app/src/static/scripts/attachment/attachment-select-directive.js",
             "./app/src/static/scripts/attachment/services/attachment-data-service.js",
             "./app/src/static/scripts/attachment/services/attachment-list-loader-service.js",
             "./app/src/static/scripts/attachment/services/attachment-uploader-service.js",
@@ -67,7 +69,10 @@ var config = {
             "./app/src/static/scripts/common/common-module.js",
             "./app/src/static/scripts/common/services/confirm-modal-service.js",
             "./app/src/static/scripts/common/services/alert-service.js",
-            "./app/src/static/scripts/common/directives/directives.js"
+            "./app/src/static/scripts/common/directives/auto-focus-directive.js",
+            "./app/src/static/scripts/common/directives/markdown-convert-directive.js",
+            "./app/src/static/scripts/common/directives/editor-fullscreen-directive.js",
+            "./app/src/static/scripts/common/directives/preview-fullscreen-directive.js"
 	    ],
 	    dest: "./app/build/static/scripts"
 	}

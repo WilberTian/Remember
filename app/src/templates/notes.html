@@ -40,10 +40,10 @@
       </div>
       <select class="form-control input-xs pull-right" style="width:60px; height:30px;" ng-disabled="item.status.viewMode"  ng-options="width for width in [2,3,4,5,6,7,8,9,10,11]" ng-model="item.note.width"></select>
       <div ng-if="!item.status.preview && !item.status.viewMode">
-        <textarea class="note-editor" ng-model="item.note.content" elastic autofocus></textarea>
+        <textarea class="note-editor" ng-model="item.note.content" reme-note-elastic reme-auto-focus></textarea>
       </div>
       <div ng-if="item.status.viewMode || item.status.preview">
-        <div markdown="item.note.content"></div>
+        <div reme-markdown-convert="item.note.content"></div>
       </div>
     </div>
   </div>

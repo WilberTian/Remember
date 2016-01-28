@@ -6,7 +6,7 @@
     <div class="form-group">
       <label class="col-xs-1 control-label">Task name</label>
       <div class="col-xs-9">
-        <input type="text" class="form-control" ng-model="task.name" placeholder="Task name" required autofocus>
+        <input type="text" class="form-control" ng-model="task.name" placeholder="Task name" required reme-auto-focus>
       </div>
     </div>
     <div class="form-group">
@@ -18,11 +18,11 @@
           <button type="button" class="btn btn-default" ng-click="mdEditorconfig.fullscreenMode = true"><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span> Fullscreen Mode</button>
         </div>
         <div ng-show="!mdEditorconfig.previewMode || mdEditorconfig.fullscreenMode">
-          <ui-codemirror ui-refresh="mdEditorconfig.refreshEditor" editor-fullscreen="mdEditorconfig.fullscreenMode" ui-codemirror-opts="mdEditorconfig.mdEditorOptions" ng-model="task.description"></ui-codemirror>
+          <ui-codemirror ui-refresh="mdEditorconfig.refreshEditor" reme-editor-fullscreen="mdEditorconfig.fullscreenMode" ui-codemirror-opts="mdEditorconfig.mdEditorOptions" ng-model="task.description"></ui-codemirror>
         </div>
         <div ng-show="mdEditorconfig.previewMode || mdEditorconfig.fullscreenMode">
           <button class="exit-fullscreen-btn" type="button" class="btn btn-default" ng-show="mdEditorconfig.fullscreenMode" ng-click="mdEditorconfig.fullscreenMode = false"><span class="glyphicon glyphicon-resize-small" aria-hidden="true"></span></button>
-          <div class="description-preview" markdown="task.description" preview-fullscreen="mdEditorconfig.fullscreenMode"></div>
+          <div class="description-preview" reme-markdown-convert="task.description" reme-preview-fullscreen="mdEditorconfig.fullscreenMode"></div>
         </div>
       </div>
     </div>
