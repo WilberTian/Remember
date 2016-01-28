@@ -2,11 +2,11 @@ angular
 	.module("remember.task")
 	.controller("EditTaskController", EditTaskController);
 
-EditTaskController.$inject = ["$scope", "$location", "taskDataService", "alertService", "task", "categories", "tags"];
+EditTaskController.$inject = ["$scope", "$location", "taskDataService", "alertService", "task", "categories", "tags", "taskGlobalVars"];
 
-function EditTaskController($scope, $location, taskDataService, alertService, task, categories, tags){
+function EditTaskController($scope, $location, taskDataService, alertService, task, categories, tags, taskGlobalVars){
     $scope.mdEditorconfig = {
-    	"mdEditorOptions": globalVar.remember.mdEditorOptions,
+    	"mdEditorOptions": taskGlobalVars.mdEditorOptions,
     	"previewMode": false,
     	"fullscreenMode": false,
     	"refreshEditor": false
@@ -19,7 +19,7 @@ function EditTaskController($scope, $location, taskDataService, alertService, ta
             
     };
     
-    $scope.dimensions = globalVar.remember.dimensions;
+    $scope.dimensions = taskGlobalVars.dimensions;
     
     $scope.task.dimension = $scope.dimensions[$scope.task.dimension-1];
 

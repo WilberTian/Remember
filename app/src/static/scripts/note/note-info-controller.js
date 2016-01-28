@@ -2,9 +2,9 @@ angular
 	.module("remember.note")
 	.controller("NoteInfoController", NoteInfoController);
 
-NoteInfoController.$inject = ["$scope", "noteDataService", "alertService", "notes", "confirmModalService"];
+NoteInfoController.$inject = ["$scope", "noteDataService", "alertService", "notes", "confirmModalService", "noteGlobalVars"];
 
-function NoteInfoController($scope, noteDataService, alertService, notes, confirmModalService){
+function NoteInfoController($scope, noteDataService, alertService, notes, confirmModalService, noteGlobalVars){
     $scope.items = _.map(notes["notes"], function(note){
         var item = {};
         item.note = note;
@@ -16,7 +16,7 @@ function NoteInfoController($scope, noteDataService, alertService, notes, confir
         return item;
     });
     
-    $scope.colors = globalVar.remember.noteColors;
+    $scope.colors = noteGlobalVars.noteColors;
 
     $scope.noteOperations = {
         "createNote": function(){

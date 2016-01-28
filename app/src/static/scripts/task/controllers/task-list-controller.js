@@ -2,9 +2,9 @@ angular
 	.module("remember.task")
 	.controller("TastListController", TastListController);
 
-TastListController.$inject = ["$scope", "tasks"];
+TastListController.$inject = ["$scope", "tasks", "taskGlobalVars"];
 
-function TastListController($scope, tasks) {
+function TastListController($scope, tasks, taskGlobalVars) {
     $scope.tasks = tasks["tasks"];
 
     $scope.categories = (function(tasks){
@@ -30,13 +30,13 @@ function TastListController($scope, tasks) {
     	});
     })(tasks["tasks"]);
     
-    $scope.dimensions = globalVar.remember.dimensions;
+    $scope.dimensions = taskGlobalVars.dimensions;
     
     $scope.clearFilter = function(){
     	$scope.selectedCategory = null;
     	$scope.selectedTag = null;
     };
 
-    $scope.taskStatus = globalVar.remember.taskStatusArray;
+    $scope.taskStatus = taskGlobalVars.taskStatusArray;
     $scope.selectedStatus = "Incomplete";
 }
