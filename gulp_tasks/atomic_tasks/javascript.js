@@ -29,9 +29,6 @@ var config = {
 	
 	userScript: {
 	    src: [
-            "./app/src/static/scripts/app-module.js",
-            "./app/src/static/scripts/app-config.js",
-            "./app/src/static/scripts/constants.js",
             "./app/src/static/scripts/task/task-module.js",
             "./app/src/static/scripts/task/controllers/task-list-controller.js",
             "./app/src/static/scripts/task/controllers/task-create-controller.js",
@@ -72,7 +69,10 @@ var config = {
             "./app/src/static/scripts/common/directives/auto-focus-directive.js",
             "./app/src/static/scripts/common/directives/markdown-convert-directive.js",
             "./app/src/static/scripts/common/directives/editor-fullscreen-directive.js",
-            "./app/src/static/scripts/common/directives/preview-fullscreen-directive.js"
+            "./app/src/static/scripts/common/directives/preview-fullscreen-directive.js",
+            "./app/src/static/scripts/app-module.js",
+            "./app/src/static/scripts/app-config.js",
+            "./app/src/static/scripts/constants.js"
 	    ],
 	    dest: "./app/build/static/scripts"
 	}
