@@ -15,5 +15,5 @@ function attachmentListLoader(attachmentDataService, $q){
         });
         
         return delay.promise;
-    }
+    };
 }

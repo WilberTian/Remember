@@ -2,15 +2,27 @@ angular
 	.module("remember.attachment")
 	.controller("AttachmentController", AttachmentController);
 
-AttachmentController.$inject = ["$scope", "attachmentDataService", "attachmentUploader", "attachments", "tags", "$uibModal", "$log", "confirmModalService", "alertService"];
+AttachmentController.$inject = [
+	"$scope", 
+	"attachmentDataService", 
+	"attachmentUploader", 
+	"attachments", 
+	"tags", 
+	"$uibModal", 
+	"$log", 
+	"confirmModalService", 
+	"alertService"
+];
 
-function AttachmentController($scope, attachmentDataService, attachmentUploader, attachments, tags, $uibModal, $log, confirmModalService, alertService){
+function AttachmentController($scope, attachmentDataService, attachmentUploader, attachments, tags, 
+		$uibModal, $log, confirmModalService, alertService){
     $scope.attachments = attachments["attachments"];
     $scope.tags = tags["tags"];
     $scope.fileObjs = [];
     $scope.remveFileObj = function(index){
         $scope.fileObjs.splice(index, 1);
-    }
+    };
+    
     $scope.clearFileObjs = function(){
         $scope.fileObjs = [];
     };
@@ -33,7 +45,7 @@ function AttachmentController($scope, attachmentDataService, attachmentUploader,
                     "toggleSelection": function(id){
                         var index = this.selectedTags.indexOf(id);
                         if(index > -1){
-                            this.selectedTags.splice(index, 1)
+                            this.selectedTags.splice(index, 1);
                         }
                         else{
                             this.selectedTags.push(id);
@@ -114,7 +126,7 @@ function AttachmentController($scope, attachmentDataService, attachmentUploader,
             });
         },
         "removeUnusedRow": function(index, attachment){
-            if(attachment.id == -1){
+            if(attachment.id === -1){
                 $scope.attachments.splice(index, 1);
             }
         }

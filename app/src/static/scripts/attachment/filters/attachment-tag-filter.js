@@ -4,8 +4,8 @@ angular
 
 function attachmentTag(){
 	return function(attachments, tag){
-		if(!tag || tag.trim() == ''){
-			return attachments
+		if(!tag || tag.trim() === ""){
+			return attachments;
 		}
 		
 		return _.filter(attachments, function(attachment){
@@ -14,5 +14,5 @@ function attachmentTag(){
 				return tagObj.name.toLowerCase().indexOf(tag) > -1;
 			});
 		});
-	}
+	};
 }

@@ -44,12 +44,12 @@ function CategoryInfoController($scope, confirmModalService, alertService, categ
         "updateCategory": function(index){
             var category = $scope.categories[index];
             
-            if(category.id == -1){
+            if(category.id === -1){
                 // create a new category
                 delete category["id"];
                 categoryDataService.save(category).$promise.then(
                     function(response){
-                        $scope.categories[index] = response["category"]
+                        $scope.categories[index] = response["category"];
                         alertService.addAlert("success", "Success: category created!", 3000);
                     },
                     function(){
@@ -72,7 +72,7 @@ function CategoryInfoController($scope, confirmModalService, alertService, categ
             }
         },
         "removeUnusedRow": function(index, category){
-            if(category.id == -1){
+            if(category.id === -1){
                 $scope.categories.splice(index, 1);
             }
         }

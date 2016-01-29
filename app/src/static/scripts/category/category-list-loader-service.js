@@ -15,5 +15,5 @@ function categoryListLoader(categoryDataService, $q){
         });
         
         return delay.promise;
-    }
+    };
 }

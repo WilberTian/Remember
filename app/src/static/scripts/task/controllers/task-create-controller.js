@@ -2,7 +2,15 @@ angular
 	.module("remember.task")
 	.controller("CreateTaskController", CreateTaskController);
 
-CreateTaskController.$inject = ["$scope", "$location", "taskDataService", "alertService", "categories", "tags", "taskGlobalVars"];
+CreateTaskController.$inject = [
+	"$scope", 
+	"$location", 
+	"taskDataService", 
+	"alertService", 
+	"categories", 
+	"tags", 
+	"taskGlobalVars"
+];
 
 function CreateTaskController($scope, $location, taskDataService, alertService, categories, tags, taskGlobalVars){
 	$scope.mdEditorconfig = {
@@ -10,7 +18,7 @@ function CreateTaskController($scope, $location, taskDataService, alertService, 
     	"previewMode": false,
     	"fullscreenMode": false,
     	"refreshEditor": false
-    }
+    };
 
     $scope.categoryInfo = {
             "categories": categories["categories"], 

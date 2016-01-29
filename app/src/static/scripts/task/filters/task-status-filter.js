@@ -4,12 +4,12 @@ angular
 
 function taskStatus(){
 	return function(tasks, status){
-		if(status == "All"){
+		if(status === "All"){
 			return tasks;
 		}
 		
 		return _.filter(tasks, function(task){
-			if(status == "Complete"){
+			if(status === "Complete"){
 				return task.done;
 			}
 			else{
@@ -17,5 +17,5 @@ function taskStatus(){
 			}
 			
 		});
-	}
+	};
 }

@@ -4,12 +4,12 @@ angular
 
 function taskCategory(){
 	return function(tasks, category){
-		if(!category || category.trim() == ''){
+		if(!category || category.trim() === ""){
 			return tasks;
 		}
 		
 		return _.filter(tasks, function(task){
-			return task.category.name == category;
+			return task.category.name === category;
 		});
-	}
+	};
 }

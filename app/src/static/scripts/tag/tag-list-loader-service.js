@@ -15,5 +15,5 @@ function tagListLoader(tagDataService, $q){
         });
         
         return delay.promise;
-    }
+    };
 }

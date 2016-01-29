@@ -13,6 +13,6 @@ function attachmentUploader($http) {
         return $http.post("/remember/api/v1.0/attachments", fd, {
             transformRequest: angular.identity,
             headers: {"Content-Type": undefined}
-        })
-    }
+        });
+    };
 }

@@ -2,7 +2,14 @@ angular
 	.module("remember.note")
 	.controller("NoteInfoController", NoteInfoController);
 
-NoteInfoController.$inject = ["$scope", "noteDataService", "alertService", "notes", "confirmModalService", "noteGlobalVars"];
+NoteInfoController.$inject = [
+	"$scope", 
+	"noteDataService", 
+	"alertService", 
+	"notes", 
+	"confirmModalService", 
+	"noteGlobalVars"
+];
 
 function NoteInfoController($scope, noteDataService, alertService, notes, confirmModalService, noteGlobalVars){
     $scope.items = _.map(notes["notes"], function(note){
@@ -61,9 +68,9 @@ function NoteInfoController($scope, noteDataService, alertService, notes, confir
         "updateNote": function(id, index){
             var note = $scope.items[index].note;
             
-            if(id == -1){
+            if(id === -1){
                 // create a new note
-                delete note["id"]
+                delete note["id"];
                 noteDataService.save(note).$promise.then(
                     function(response){
                         $scope.items[index].status.viewMode = true;

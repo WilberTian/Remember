@@ -15,6 +15,6 @@ function noteListLoader(noteDataService, $q){
         });
         
         return delay.promise;
-    }
+    };
 }
 

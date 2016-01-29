@@ -15,5 +15,5 @@ function taskListLoader(taskDataService, $q){
         });
         
         return delay.promise;
-    }
+    };
 }

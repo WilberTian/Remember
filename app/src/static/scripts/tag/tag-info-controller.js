@@ -44,7 +44,7 @@ function TagInfoController($scope, confirmModalService, tagDataService, alertSer
         "updateTag": function(index){
             var tag = $scope.tags[index];
         
-            if(tag.id == -1){
+            if(tag.id === -1){
                 // create a new tag
                 delete tag["id"];
                 tagDataService.save(tag).$promise.then(
@@ -73,7 +73,7 @@ function TagInfoController($scope, confirmModalService, tagDataService, alertSer
             }
         },
         "removeUnusedRow": function(index, tag){
-            if(tag.id == -1){
+            if(tag.id === -1){
                 $scope.tags.splice(index, 1);
             }
         }

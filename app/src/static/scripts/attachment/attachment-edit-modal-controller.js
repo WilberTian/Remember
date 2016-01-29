@@ -13,7 +13,7 @@ function AttachmentEditModalController($scope, $uibModalInstance, attachment, ta
         "toggleSelection": function(id){
             var index = this.selectedTags.indexOf(id);
             if(index > -1){
-                this.selectedTags.splice(index, 1)
+                this.selectedTags.splice(index, 1);
             }
             else{
                 this.selectedTags.push(id);

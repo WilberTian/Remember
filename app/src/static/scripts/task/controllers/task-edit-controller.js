@@ -2,7 +2,16 @@ angular
 	.module("remember.task")
 	.controller("EditTaskController", EditTaskController);
 
-EditTaskController.$inject = ["$scope", "$location", "taskDataService", "alertService", "task", "categories", "tags", "taskGlobalVars"];
+EditTaskController.$inject = [
+	"$scope", 
+	"$location", 
+	"taskDataService", 
+	"alertService", 
+	"task", 
+	"categories", 
+	"tags", 
+	"taskGlobalVars"
+];
 
 function EditTaskController($scope, $location, taskDataService, alertService, task, categories, tags, taskGlobalVars){
     $scope.mdEditorconfig = {
@@ -10,7 +19,7 @@ function EditTaskController($scope, $location, taskDataService, alertService, ta
     	"previewMode": false,
     	"fullscreenMode": false,
     	"refreshEditor": false
-    }
+    };
     
     $scope.task = task["task"];
 
@@ -28,7 +37,7 @@ function EditTaskController($scope, $location, taskDataService, alertService, ta
         "selection": $scope.task.tags,
         "findTagById": function(id){
             for(var i = 0; i < this.selection.length; i++){
-                if(this.selection[i]["id"] == id){
+                if(this.selection[i]["id"] === id){
                     return i;
                 }
             }

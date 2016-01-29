@@ -20,7 +20,9 @@ function confirmModalService($uibModal) {
     };
 
     this.showModal = function (customModalDefaults, customModalOptions) {
-        if (!customModalDefaults) customModalDefaults = {};
+        if (!customModalDefaults) {
+        	customModalDefaults = {};
+        }
         customModalDefaults.backdrop = "static";
         return this.show(customModalDefaults, customModalOptions);
     };
@@ -45,7 +47,7 @@ function confirmModalService($uibModal) {
                 $scope.modalOptions.close = function (result) {
                     $uibModalInstance.dismiss("cancel");
                 };
-            }
+            };
         }
 
         return $uibModal.open(tempModalDefaults).result;
