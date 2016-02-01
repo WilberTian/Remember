@@ -48,3 +48,8 @@ node_modules/
 bower_components/
 
 
+##########################################################
+##    test coverage file from karma-coverage
+##########################################################
+TestFiles/
+
