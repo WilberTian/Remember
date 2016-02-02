@@ -33,9 +33,7 @@ module.exports = function(config) {
         // angular mock
         './app/src/test/angular-mocks.js',
         
-        
-        
-        
+        // user scripts
         "./app/src/static/scripts/task/task-module.js",
         "./app/src/static/scripts/task/controllers/task-list-controller.js",
         "./app/src/static/scripts/task/controllers/task-create-controller.js",
@@ -81,8 +79,8 @@ module.exports = function(config) {
         "./app/src/static/scripts/app-config.js",
         "./app/src/static/scripts/constants.js",
 
-        
-        
+        // specs
+        './app/src/test/specs/tag/tag-data-service-spec.js',
         './app/src/test/specs/tag/tag-info-controller-spec.js'
         
     ],

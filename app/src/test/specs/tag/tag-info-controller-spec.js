@@ -6,9 +6,8 @@ describe("TagInfoController", function() {
     
     var $controller;
     
-    beforeEach(angular.mock.inject(function(_$controller_){
-    	// The injector unwraps the underscores (_) from around the parameter names when matching
-    	$controller = _$controller_;
+    beforeEach(angular.mock.inject(function($injector){
+    	$controller = $injector.get("$controller");;
     }));
     
     describe("$scope.tags", function() {
