@@ -10,7 +10,7 @@ describe("TagInfoController", function() {
     	$controller = $injector.get("$controller");;
     }));
     
-    describe("$scope.tags", function() {
+    describe("Test CRUD of tag", function() {
 	    var $scope, controller;
 	    
 	    beforeEach(function() {
@@ -37,6 +37,13 @@ describe("TagInfoController", function() {
 	    
 	    it("should have three tag items", function() {
 	        expect($scope.tags.length).toEqual(3);
+	    });
+	    
+	    it("create tag operation", function() {
+	    	$scope.tagOperations.createTag();
+	    	
+	    	expect($scope.tags.length).toEqual(4);
+	    	expect($scope.tags[$scope.tags.length - 1]["id"]).toEqual(-1);
 	    });
 	    
 	    

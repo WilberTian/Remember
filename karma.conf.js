@@ -81,7 +81,8 @@ module.exports = function(config) {
 
         // specs
         './app/src/test/specs/tag/tag-data-service-spec.js',
-        './app/src/test/specs/tag/tag-info-controller-spec.js'
+        './app/src/test/specs/tag/tag-info-controller-spec.js',
+        './app/src/test/specs/tag/tag-list-loader-service-spec.js'
         
     ],
 
