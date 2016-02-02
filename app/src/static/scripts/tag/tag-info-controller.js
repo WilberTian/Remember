@@ -11,8 +11,7 @@ function TagInfoController($scope, confirmModalService, tagDataService, alertSer
         "createTag": function(){
             $scope.inserted = {
                 "id": -1,
-                "name": "Not set",
-                "description": "Not set"
+                "name": "Not set"
             };
             $scope.tags.push($scope.inserted);
             
