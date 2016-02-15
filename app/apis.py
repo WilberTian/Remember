@@ -475,12 +475,6 @@ class NoteAPI(Resource):
         db.session.commit()
         return {"note": marshal(note, NOTE_FIELDS)}
 
-
-# This is the path to the upload directory
-app.config["UPLOAD_FOLDER"] = "uploads"
-# These are the extension that we are accepting to be uploaded
-app.config["ALLOWED_EXTENSIONS"] = set(["txt", "pdf", "png", "jpg", "jpeg", "gif", "py"])
-
 def allowed_file(filename):
     '''
     function to check allowed attachment extension
