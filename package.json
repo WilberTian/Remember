@@ -2,6 +2,13 @@
   "name": "Remember",
   "version": "0.1.0",
   "description": "a simple tool to help remember things",
+  "author": "Wilber",
+  "license": "MIT",
+  "homepage": "https://github.com/WilberTian/Remember",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WilberTian/Remember.git"
+  },
   "dependencies": {
     "gulp": "^3.9.0",
     "gulp-cache": "^0.2.10",
