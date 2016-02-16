@@ -35,6 +35,24 @@ To start this app, please follow below steps.
 4. Now visit http://localhost:5000/
 
 
+## Misc
+
+1. Python style check with pylint
+
+    - `pylint --rcfile=pylint.conf app` 
+
+2. JavaScript style check with jshint
+
+    - `gulp jshint`     
+    
+3. Run JavaScript unit test
+
+    - `karma start`
+    - check the test coverage at "Remember\TestFiles\coverage\" folder
+    
+4. Some atomic gulp tasks under "Remember\gulp_tasks\atomic_tasks\"    
+
+
 ## Screenshots
 
 
