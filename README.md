@@ -60,4 +60,23 @@ To start this app, please follow below steps.
 
 ## Screenshots
 
+### Task management
+![Task management](https://cloud.githubusercontent.com/assets/5880320/13109260/2ba8350e-d5b3-11e5-8e26-dae1ac67f1fd.gif)
+
+### markdown edit/preview
+![markdown mode](https://cloud.githubusercontent.com/assets/5880320/13109371/bbb7cd30-d5b3-11e5-8220-5d1eff184cb6.gif)
+
+### Note management
+![Note management](https://cloud.githubusercontent.com/assets/5880320/13109372/bbb81ba0-d5b3-11e5-93c6-f2e5138056d2.gif)
+
+### Attachment management
+![Attachment management](https://cloud.githubusercontent.com/assets/5880320/13109370/bbb4ae02-d5b3-11e5-9b75-c24818c0c974.gif)
+
+### Category management
+![Category management](https://cloud.githubusercontent.com/assets/5880320/13109373/bbbc34ba-d5b3-11e5-9896-4896f6ff6a99.gif)
+
+### Tag management
+![Tag management](https://cloud.githubusercontent.com/assets/5880320/13109374/bbc4f3e8-d5b3-11e5-96ef-5e9f507803ce.gif)
+
+
 
