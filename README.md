@@ -52,6 +52,11 @@ To start this app, please follow below steps.
     
 4. Some atomic gulp tasks under "Remember\gulp_tasks\atomic_tasks\"    
 
+5. Set `app.debug = True` to `False` in "Remember\app\__init__.py" to disable debug mode
+
+    - In non-debug mode, Flask will leverage minified HTML/CSS/JS to reduce HTTP request number/size
+    - Minified HTML/CSS/JS were saved in "Remember\app\build\templates" and "Remember\app\build\static" 
+
 
 ## Screenshots
 
