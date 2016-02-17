@@ -18,7 +18,10 @@ function remeAttachmentSelect(){
             for (var i = 0; i < files.length; i++) {
                 //emit event upward
                 scope.$emit("fileSelected", { file: files[i] });
-            }                                       
+            }         
+
+            // clear the value of the input file element since attachment-controller will handle all the selected file objects
+            element.val("");
         });
     }
 }
