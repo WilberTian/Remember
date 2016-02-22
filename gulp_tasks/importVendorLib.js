@@ -10,9 +10,7 @@ gulp.task("importVendorLib", ["cleanImportedVendorLib"], function(){
 	 * 	importVendorFonts from fonts.js
 	 * 
 	 */
-	setTimeout(function(){
-		gulp.start(["importVendorScript", "importVendorCSS", "importVendorFonts"]);
-	}, 100);
+	return gulp.start(["importVendorScript", "importVendorCSS", "importVendorFonts"]);
 	
 });
 

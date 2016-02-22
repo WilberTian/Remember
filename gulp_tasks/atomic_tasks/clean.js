@@ -18,11 +18,11 @@ var config = {
  * tasks
  */
 gulp.task("cleanBuild", function() {
-    gulp.src(config.build.dest, { read: false })
+    return gulp.src(config.build.dest, { read: false })
         .pipe(clean({force: true}));
 });
 
 gulp.task("cleanImportedVendorLib", function() {
-    gulp.src(config.importedVendorLib.dest, { read: false })
+    return gulp.src(config.importedVendorLib.dest, { read: false })
         .pipe(clean({force: true}));
 });

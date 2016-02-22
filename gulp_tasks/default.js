@@ -1,6 +1,6 @@
 var gulp = require("gulp");
 
-gulp.task("default", function(){
+gulp.task("default",  ["importVendorLib"], function(){
 	/*
 	 * 1. clean build data and imported vendor lib
 	 * 2. import vendor lib
@@ -11,9 +11,6 @@ gulp.task("default", function(){
 	 * 	buildResource from buildResource.js
 	 * 
 	 */
-	gulp.start(["importVendorLib"]);
+	gulp.start(["buildResource"]);
 	
-	setTimeout(function(){
-		gulp.start(["buildResource"]);
-	}, 100);
 });

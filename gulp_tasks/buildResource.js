@@ -10,13 +10,12 @@ gulp.task("buildResource", ["cleanBuild"], function(){
 	 * 	buildHtml from html.js
 	 * 
 	 */
-	setTimeout(function(){
-		gulp.start(["buildVendorScript", "buildUserScript", 
-		            "buildVendorCSS", "buildUserCSS", 
-		            "buildHtml",
-		            "buildVendorFonts",
-		            "buildImages",
-		            "modifyIndexHtml"]);
-	}, 100);	
+
+	return gulp.start(["buildVendorScript", "buildUserScript", 
+	            "buildVendorCSS", "buildUserCSS", 
+	            "buildVendorFonts",
+	            "buildImages",
+	            "modifyIndexHtml"]);
+
 });
 

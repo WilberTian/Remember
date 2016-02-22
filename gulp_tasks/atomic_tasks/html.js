@@ -16,7 +16,7 @@ var config = {
  * tasks
  */
 gulp.task("buildHtml", function(){
-    gulp.src(config.html.src)
+    return gulp.src(config.html.src)
         .pipe(htmlmin({collapseWhitespace: true, minifyJS: true, minifyCss: true}))
         .pipe(gulp.dest(config.html.dest));
 });
